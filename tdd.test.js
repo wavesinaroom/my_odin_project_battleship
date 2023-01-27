@@ -1,6 +1,11 @@
 import {shipTypes, Ship} from './ship'
 
-test('Create a Battleship', ()=>{
+describe('Ship',()=>{
   const myShip = Ship(shipTypes.BATTLESHIP) 
-  expect(myShip.length).toBe(4);
+  test('Create a Battleship', ()=>{
+    expect(myShip.length).toBe(4);
+  })
+  test('Throw exception if no shipType is specified',()=>{
+    expect(()=>{Ship()}).toThrowError(`Can't create ship without a specific ship type`);
+  })
 })

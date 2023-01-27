@@ -37,7 +37,7 @@ function Ship(type){
       ship.length = 2;
       break;
     default:
-      throw new Error(`Can't create ship without a specific type`);
+      throw new Error(`Can't create ship without a specific ship type`);
   }
   return ship;
 }
