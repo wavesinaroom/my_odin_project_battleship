@@ -10,6 +10,7 @@ const shipTypes = {
 const shipActions = {
   hit(){
     ++this.hitpoints;
+    this.checkShipState();
   },
   checkShipState(){
     if(this.hitpoints==this.length)

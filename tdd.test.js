@@ -2,10 +2,20 @@ import {shipTypes, Ship} from './ship'
 
 describe('Ship',()=>{
   const myShip = Ship(shipTypes.BATTLESHIP) 
+  myShip.hit();
   test('Create a Battleship', ()=>{
     expect(myShip.length).toBe(4);
   })
   test('Throw exception if no shipType is specified',()=>{
     expect(()=>{Ship()}).toThrowError(`Can't create ship without a specific ship type`);
+  })
+  test('Hit points increase when hit function is called', ()=>{
+    expect(myShip.hitpoints).toBe(1);
+  })
+  test('Ship is sunk', ()=>{
+    myShip.hit();
+    myShip.hit();
+    myShip.hit();
+    expect(myShip.isSunk).toBeTruthy();
   })
 })
