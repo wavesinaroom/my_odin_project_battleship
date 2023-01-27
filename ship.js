@@ -1,4 +1,4 @@
-export{ship, createShip, shipTypes}
+export {shipTypes, Ship}
 
 const shipTypes = {
   CARRIER: Symbol(`carrier`),
@@ -7,10 +7,7 @@ const shipTypes = {
   DESTROYER: Symbol(`destroyer`),
 }
 
-const ship = {
-  length:1,
-  hitpoints:0,
-  isSunk:false,
+const shipActions = {
   hit(){
     ++this.hitpoints;
   },
@@ -20,33 +17,28 @@ const ship = {
   }
 }
 
-function createShip(ship){
-  switch(ship){
-    case(shipTypes.CARRIER):
-      const carrier = {
-        length: 5,
-        __proto__: ship,
-      };
-      return carrier 
-    case(shipTypes.BATTLESHIP):
-      const battleship = {
-        length: 4,
-        __proto__: ship,
-      };
-      return battleship;
-    case(shipTypes.CRUISER):
-      const cruiser = {
-        length: 3,
-        __proto__: ship,
-      };
-      return cruiser;
-    case(shipTypes.DESTROYER):
-      const destroyer = {
-        length: 2,
-        __proto__: ship,
-      };
-      return destroyer;
-  }
-}
+function Ship(type){
 
+  const ship = Object.create(shipActions); 
+  ship.hitpoints = 0;
+  ship.isSunk = false;
+
+  switch(type){
+    case(shipTypes.CARRIER):
+      ship.length = 5;
+      break;
+    case(shipTypes.BATTLESHIP):
+      ship.length = 4;
+      break;
+    case(shipTypes.CRUISER):
+      ship.length = 3;
+      break;
+    case(shipTypes.DESTROYER):
+      ship.length = 2;
+      break;
+    default:
+      throw new Error(`Can't create ship without a specific type`);
+  }
+  return ship;
+}
 

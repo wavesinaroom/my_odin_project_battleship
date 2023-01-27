@@ -1,5 +1,6 @@
-import * as ship from './ship'
-test('adds 1+2 to equal 3', ()=>{
-  const myShip = ship.createShip(ship.shipTypes.BATTLESHIP); 
+import {shipTypes, Ship} from './ship'
+
+test('Create a Battleship', ()=>{
+  const myShip = Ship(shipTypes.BATTLESHIP) 
   expect(myShip.length).toBe(4);
 })
