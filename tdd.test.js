@@ -23,7 +23,7 @@ describe(`Ship`,()=>{
 })
 
 describe(`GameBoard`,()=>{
-  const myBoard = GameBoard();
+  const myBoard = GameBoard;
   test(`Create a 10x10 GameBoard`, ()=>{
     expect(myBoard.size).toBe(10); 
   })
