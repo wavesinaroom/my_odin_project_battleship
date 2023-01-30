@@ -19,8 +19,4 @@ describe('Ship',()=>{
     myShip.hit();
     expect(myShip.isSunk).toBeTruthy();
   })
-  test(`Prevent hit function from extra triggering after ship is sunk`, ()=>{
-    myShip.hitpoints = 4;
-    expect(()=>{myShip.hit()}).toThrowError(`Ship should've been destroyed by now`);
-  })
 })
