@@ -9,6 +9,9 @@ const shipTypes = {
 
 const shipActions = {
   hit(){
+    if(this.isSunk&&this.hitpoints>this.length)
+      throw new Error(`Ship should've been destroyed by now`);
+
     ++this.hitpoints;
     this.checkShipState();
   },
