@@ -1,5 +1,5 @@
 import {shipTypes, Ship} from './ship'
-import Gameboard from './gameboard.js'
+import GameBoard from './gameboard'
 
 describe(`Ship`,()=>{
   const myShip = Ship(shipTypes.BATTLESHIP) 
@@ -22,9 +22,9 @@ describe(`Ship`,()=>{
   })
 })
 
-describe(`Gameboard`,()=>{
-  const myBoard = Gameboard();
-  test(`Create a 10x10 Gameboard`, ()=>{
+describe(`GameBoard`,()=>{
+  const myBoard = GameBoard();
+  test(`Create a 10x10 GameBoard`, ()=>{
     expect(myBoard.size).toBe(10); 
   })
   test(`Place a horizontal BATTLESHIP on the board center`, ()=>{
