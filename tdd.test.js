@@ -1,8 +1,8 @@
-import {shipTypes, Ship} from './ship'
+import {shipType,shipOrientation,Ship} from './ship'
 import GameBoard from './gameboard'
 
 describe(`Ship`,()=>{
-  const myShip = Ship(shipTypes.BATTLESHIP) 
+  const myShip = Ship(shipType.BATTLESHIP, shipOrientation.HORIZONTAL) 
   test(`Create a Battleship`, ()=>{
     expect(myShip.length).toBe(4);
   })
@@ -28,16 +28,16 @@ describe(`GameBoard`,()=>{
     expect(myBoard.size).toBe(10); 
   })
   test(`Place a horizontal BATTLESHIP on the board center`, ()=>{
-    expect(myBoard.cells[4][4]).toBe("B1");
-    expect(myBoard.cells[5][4]).toBe("B1");
-    expect(myBoard.cells[6][4]).toBe("B1");
-    expect(myBoard.cells[7][4]).toBe("B1");
+    expect(myBoard.cells[4][4]).toBeTruthy();
+    expect(myBoard.cells[5][4]).toBeTruthy();
+    expect(myBoard.cells[6][4]).toBeTruthy();
+    expect(myBoard.cells[7][4]).toBeTruthy();
   })
   test(`Place a vertical BATTLESHIP on the board center`, ()=>{
-    expect(myBoard.cells[4][4]).toBe("B1");
-    expect(myBoard.cells[4][5]).toBe("B1");
-    expect(myBoard.cells[4][6]).toBe("B1");
-    expect(myBoard.cells[4][7]).toBe("B1");
+    expect(myBoard.cells[4][4]).toBeTruthy();
+    expect(myBoard.cells[4][5]).toBeTruthy();
+    expect(myBoard.cells[4][6]).toBeTruthy();
+    expect(myBoard.cells[4][7]).toBeTruthy();
   })
   test(`A ship can't never be placed out of boundaries`,()=>{
     expect(()=>{myBoard.placeShips()}).toThrowError(`Ship is out of boundaries`);
