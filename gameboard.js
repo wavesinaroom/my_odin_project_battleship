@@ -20,6 +20,9 @@ const gameboardActions = {
     const ship = Ship(shipType);
     ship.ID = coordinate;
     let newCoordinate; 
+  
+    if(this.tiles.has(`${coordinate.x},${coordinate.y}`))
+      throw new Error(`There's already an object on that coordinate`);
 
     if(orientation === shipOrientation.HORIZONTAL){
       if(coordinate.x + ship.length > this.size)
@@ -36,8 +39,7 @@ const gameboardActions = {
         newCoordinate = `${coordinate.x},${coordinate.y+i}`
         this.tiles.set(newCoordinate, ship.ID);
       }
-    }
-    else
+    }else
       throw new Error(`Undefined ship orientation`);
 
     this.shipsLog.set(ship, ship.ID);

@@ -24,22 +24,38 @@ describe(`Ship`,()=>{
 
 describe(`GameBoard`,()=>{
   const myBoard = GameBoard();
-  const myCoordinate = coordinate(4,4);
+  let myCoordinate = coordinate(4,4);
   test(`Check board constant size equals 10`, ()=>{
     expect(myBoard.size).toBe(10); 
   })
-  test(`Place a horizontal BATTLESHIP on the board center`, ()=>{
-    myBoard.placeShips(shipType.BATTLESHIP,shipOrientation.HORIZONTAL, myCoordinate)
+  test(`Place a DESTROYER ship on board center`, ()=>{
+    myBoard.placeShips(shipType.DESTROYER, shipOrientation.HORIZONTAL, myCoordinate);  
     expect(myBoard.tiles.has(`${myCoordinate.x},${myCoordinate.y}`)).toBeTruthy();
   })
-  test(`Place a vertical BATTLESHIP on the board center`, ()=>{
-    myBoard.placeShips(shipType.BATTLESHIP,shipOrientation.VERTICAL, coordinate(4,4))
-    expect(myBoard.tiles.has(`${myCoordinate.x},${myCoordinate.y}`)).toBeTruthy();
+  test(`Ships can't overlap on board`,()=>{
+    expect(()=>{myBoard.placeShips(shipType.BATTLESHIP,shipOrientation.VERTICAL, myCoordinate)}).toThrowError(`There's already an object on that coordinate`);
+  })
+  test(`Place a horizontal BATTLESHIP on board`, ()=>{
+    myCoordinate.x = 2;
+    myCoordinate.y = 2;
+    myBoard.placeShips(shipType.BATTLESHIP,shipOrientation.HORIZONTAL, myCoordinate);
+    expect(myBoard.tiles.has(`${myCoordinate.x+3},${myCoordinate.y}`));
+  })
+  test(`Place a vertical BATTLESHIP on board`, ()=>{
+    myCoordinate.y = 1;
+    myCoordinate.x = 1;
+    myBoard.placeShips(shipType.BATTLESHIP,shipOrientation.VERTICAL, myCoordinate);
+    expect(myBoard.tiles.has(`${myCoordinate.x},${myCoordinate.y+3}`));
+  })
+
+  test(`Part of a ship is out of X boundaries`,()=>{
+    myCoordinate.x = 7;
+    myCoordinate.y = 7;
+    expect(()=>{myBoard.placeShips(shipType.BATTLESHIP,shipOrientation.HORIZONTAL, myCoordinate)}).toThrowError(`Part of ship is out of board X boundary`);
+    
   })
   test(`Part of a ship is out of Y boundaries`,()=>{
-  })
-  test(`Part of a ship is out of X boundaries`,()=>{
-  })
-  test(`First BATTLESHIP ID is stored in board records`,()=>{
+    myCoordinate.x = 6;
+    expect(()=>{myBoard.placeShips(shipType.BATTLESHIP,shipOrientation.VERTICAL, myCoordinate)}).toThrowError(`Part of ship is out of board Y boundary`);
   })
 })
