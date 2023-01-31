@@ -2,9 +2,10 @@ import {  Ship } from "./ship"
 export {GameBoard, coordinate, shipOrientation}
 
 function coordinate(x,y){
-  if(x > this.size || x < 1)
+  const boardSize = 10;
+  if(x > boardSize || x < 1)
     throw new Error(`X coordinate is out of boundaries`);
-  if(y > this.size || y < 1)
+  if(y > boardSize || y < 1)
     throw new Error(`Y coordinate is out of boundaries`);
   return{x:x, y:y}
 }
@@ -18,20 +19,22 @@ const gameboardActions = {
   placeShips(shipType, orientation, coordinate){
     const ship = Ship(shipType);
     ship.ID = coordinate;
-    
+    let newCoordinate; 
+
     if(orientation === shipOrientation.VERTICAL){
       if(coordinate.y + ship.length > this.size)
         throw new Error(`Part of ship is out of board Y boundary`);
       for(let i = 0; i<ship.length; ++i){
-        this.tiles.set(ship.ID, coordinate);
-        ++coordinate.y;
+        newCoordinate = `${coordinate.x},${coordinate.y+i}`
+        this.tiles.set(newCoordinate, ship.ID);
       }
     }
     else if(orientation === shipOrientation.HORIZONTAL){
       if(coordinate.x + ship.length > this.size)
         throw new Error(`Part of ship is out of board X boundary`);
       for(let i = 0; i<ship.length; ++i){
-        this.tiles.set(ship.ID, coordinate);
+        newCoordinate = `${coordinate.x+i},${coordinate.y}`
+        this.tiles.set(newCoordinate, ship.ID);
         ++coordinate.x;
       }
     }

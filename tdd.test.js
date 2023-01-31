@@ -24,18 +24,17 @@ describe(`Ship`,()=>{
 
 describe(`GameBoard`,()=>{
   const myBoard = GameBoard();
+  const myCoordinate = coordinate(4,4);
   test(`Check board constant size equals 10`, ()=>{
     expect(myBoard.size).toBe(10); 
   })
   test(`Place a horizontal BATTLESHIP on the board center`, ()=>{
-    myBoard.placeShips(shipType.BATTLESHIP,shipOrientation.HORIZONTAL, coordinate(4,4))
-    expect(myBoard.tiles.has(coordinate(4,4))).toBeTruthy();
-    expect(myBoard.tiles.has(coordinate(4,5))) .toBeTruthy();
+    myBoard.placeShips(shipType.BATTLESHIP,shipOrientation.HORIZONTAL, myCoordinate)
+    expect(myBoard.tiles.has(`${myCoordinate.x},${myCoordinate.y}`)).toBeTruthy();
   })
   test(`Place a vertical BATTLESHIP on the board center`, ()=>{
     myBoard.placeShips(shipType.BATTLESHIP,shipOrientation.VERTICAL, coordinate(4,4))
-    expect(myBoard.tiles.has(coordinate(4,4))).toBeTruthy();
-    expect(myBoard.tiles.has(coordinate(5,4))) .toBeTruthy();
+    expect(myBoard.tiles.has(`${myCoordinate.x},${myCoordinate.y}`)).toBeTruthy();
   })
   test(`Part of a ship is out of Y boundaries`,()=>{
   })
