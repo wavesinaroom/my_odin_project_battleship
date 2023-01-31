@@ -1,11 +1,12 @@
-export {shipTypes, Ship}
+export {shipType, shipOrientation, Ship}
 
-const shipTypes = {
+const shipType = {
   CARRIER: Symbol(`carrier`),
   BATTLESHIP: Symbol(`battleship`),
   CRUISER: Symbol(`cruiser`),
   DESTROYER: Symbol(`destroyer`),
 }
+
 
 const shipActions = {
   hit(){
@@ -26,18 +27,19 @@ function Ship(type){
   const ship = Object.create(shipActions); 
   ship.hitpoints = 0;
   ship.isSunk = false;
+  ship.ID = undefined;
 
   switch(type){
-    case(shipTypes.CARRIER):
+    case(shipType.CARRIER):
       ship.length = 5;
       break;
-    case(shipTypes.BATTLESHIP):
+    case(shipType.BATTLESHIP):
       ship.length = 4;
       break;
-    case(shipTypes.CRUISER):
+    case(shipType.CRUISER):
       ship.length = 3;
       break;
-    case(shipTypes.DESTROYER):
+    case(shipType.DESTROYER):
       ship.length = 2;
       break;
     default:
