@@ -1,4 +1,4 @@
-export {shipType, shipOrientation, Ship}
+export {shipType, Ship}
 
 const shipType = {
   CARRIER: Symbol(`carrier`),

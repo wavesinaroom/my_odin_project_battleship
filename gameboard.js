@@ -1,5 +1,5 @@
-import { shipType, Ship } from "./ship"
-export {GameBoard}
+import {  Ship } from "./ship"
+export {GameBoard, coordinate, shipOrientation}
 
 function coordinate(x,y){
   if(x > this.size || x < 1)
@@ -19,7 +19,6 @@ const gameboardActions = {
     const ship = Ship(shipType);
     ship.ID = coordinate;
     
-    //take ship orientation to increase x or y and loop ship.length times, check if each iteration keeps the ship on the board
     if(orientation === shipOrientation.VERTICAL){
       if(coordinate.y + ship.length > this.size)
         throw new Error(`Part of ship is out of board Y boundary`);
@@ -39,12 +38,7 @@ const gameboardActions = {
     else
       throw new Error(`Undefined ship orientation`);
 
-    if(ship.orientation == shipOrientation.HORIZONTAL){
-
-    }
-
-    this.shipsRecord.set(ship, ship.ID);
-
+    this.shipsLog.set(ship, ship.ID);
 
   },
   getAttack(){
@@ -53,11 +47,10 @@ const gameboardActions = {
 }
 
 
-function GameBoard(){
+function GameBoard (){
   const gameboard = Object.create(gameboardActions);
-  gameboard.shipsRecord= new Map(); 
+  gameboard.shipsLog= new Map(); 
   gameboard.missedShots= [];
-  //Tiles will store as key and coordinate as value
   gameboard.tiles= new Map(); 
   gameboard.size= 10;
 
