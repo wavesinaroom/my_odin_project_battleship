@@ -21,21 +21,20 @@ const gameboardActions = {
     ship.ID = coordinate;
     let newCoordinate; 
 
-    if(orientation === shipOrientation.VERTICAL){
-      if(coordinate.y + ship.length > this.size)
-        throw new Error(`Part of ship is out of board Y boundary`);
-      for(let i = 0; i<ship.length; ++i){
-        newCoordinate = `${coordinate.x},${coordinate.y+i}`
-        this.tiles.set(newCoordinate, ship.ID);
-      }
-    }
-    else if(orientation === shipOrientation.HORIZONTAL){
+    if(orientation === shipOrientation.HORIZONTAL){
       if(coordinate.x + ship.length > this.size)
         throw new Error(`Part of ship is out of board X boundary`);
       for(let i = 0; i<ship.length; ++i){
         newCoordinate = `${coordinate.x+i},${coordinate.y}`
         this.tiles.set(newCoordinate, ship.ID);
         ++coordinate.x;
+      }
+    }else if(orientation === shipOrientation.VERTICAL){
+      if(coordinate.y + ship.length > this.size)
+        throw new Error(`Part of ship is out of board Y boundary`);
+      for(let i = 0; i<ship.length; ++i){
+        newCoordinate = `${coordinate.x},${coordinate.y+i}`
+        this.tiles.set(newCoordinate, ship.ID);
       }
     }
     else
