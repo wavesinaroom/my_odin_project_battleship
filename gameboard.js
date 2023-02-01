@@ -18,7 +18,7 @@ const shipOrientation = {
 const gameboardActions = {
   placeShips(shipType, orientation, coordinate){
     const ship = Ship(shipType);
-    ship.ID = coordinate;
+    ship.ID = `${coordinate.x},${coordinate.y}`;
     let newCoordinate; 
   
     if(this.tiles.has(`${coordinate.x},${coordinate.y}`))
