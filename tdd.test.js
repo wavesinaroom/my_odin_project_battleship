@@ -36,16 +36,16 @@ describe(`GameBoard`,()=>{
     expect(()=>{myBoard.placeShips(shipType.BATTLESHIP,shipOrientation.VERTICAL, myCoordinate)}).toThrowError(`There's already an object on that coordinate`);
   })
   test(`Place a horizontal BATTLESHIP on board`, ()=>{
-    myCoordinate.x = 2;
-    myCoordinate.y = 2;
+    myCoordinate.x = 5;
+    myCoordinate.y = 5;
     myBoard.placeShips(shipType.BATTLESHIP,shipOrientation.HORIZONTAL, myCoordinate);
-    expect(myBoard.tiles.has(`${myCoordinate.x+3},${myCoordinate.y}`));
+    expect(myBoard.tiles.has(`${myCoordinate.x+3},${myCoordinate.y}`)).toBeTruthy();
   })
   test(`Place a vertical BATTLESHIP on board`, ()=>{
     myCoordinate.y = 1;
     myCoordinate.x = 1;
     myBoard.placeShips(shipType.BATTLESHIP,shipOrientation.VERTICAL, myCoordinate);
-    expect(myBoard.tiles.has(`${myCoordinate.x},${myCoordinate.y+3}`));
+    expect(myBoard.tiles.has(`${myCoordinate.x},${myCoordinate.y+3}`)).toBeTruthy();
   })
 
   test(`Part of a ship is out of X boundaries`,()=>{
@@ -57,5 +57,12 @@ describe(`GameBoard`,()=>{
   test(`Part of a ship is out of Y boundaries`,()=>{
     myCoordinate.x = 6;
     expect(()=>{myBoard.placeShips(shipType.BATTLESHIP,shipOrientation.VERTICAL, myCoordinate)}).toThrowError(`Part of ship is out of board Y boundary`);
+  })
+
+  test(`Ship is logged after being placed`,()=>{
+    myCoordinate.x = 4;
+    myCoordinate.y = 4;
+    expect(myBoard.shipsLog.has(`${myCoordinate.x},${myCoordinate.y}`)).toBeTruthy();
+    expect(myBoard.shipsLog.has(`${myCoordinate.x},${myCoordinate.y+1}`)).toBeFalsy();
   })
 })

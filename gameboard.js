@@ -30,7 +30,6 @@ const gameboardActions = {
       for(let i = 0; i<ship.length; ++i){
         newCoordinate = `${coordinate.x+i},${coordinate.y}`
         this.tiles.set(newCoordinate, ship.ID);
-        ++coordinate.x;
       }
     }else if(orientation === shipOrientation.VERTICAL){
       if(coordinate.y + ship.length > this.size)
@@ -42,7 +41,7 @@ const gameboardActions = {
     }else
       throw new Error(`Undefined ship orientation`);
 
-    this.shipsLog.set(ship, ship.ID);
+    this.shipsLog.set(ship.ID, ship.shipType);
 
   },
   getAttack(){
