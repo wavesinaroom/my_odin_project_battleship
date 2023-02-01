@@ -41,6 +41,15 @@ describe(`Ship placement`,()=>{
   })
 })
 
+describe(`Shots`,()=>{
+  let myCoordinate=coordinate(8,8);
+  myBoard.getAttack(myCoordinate);
+  test(`Failed shot logs undefined in GameBoard tiles`, ()=>{
+    expect(myBoard.tiles.has(`${myCoordinate.x},${myCoordinate.y}`)).toBeFalsy();
+    expect(myBoard.tiles.get(`${myCoordinate.x},${myCoordinate.y}`)).toBe(undefined);
+  })
+})
+
 describe(`Ship log`, ()=>{
   let myCoordinate = coordinate(4,4);
   test(`Ship is logged after being placed`,()=>{

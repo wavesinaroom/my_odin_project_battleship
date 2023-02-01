@@ -44,8 +44,9 @@ const gameboardActions = {
     this.shipsLog.set(ship.ID, ship.shipType);
 
   },
-  getAttack(){
-
+  getAttack(coordinate){
+    if(!this.tiles.has(`${coordinate.x},${coordinate.y}`))
+      this.tiles.set(`${coordinate.x}, ${coordinate.y}`, undefined)
   },
 }
 
