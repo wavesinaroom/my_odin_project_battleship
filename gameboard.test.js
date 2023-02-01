@@ -1,33 +1,14 @@
 import {shipType,Ship} from './ship'
-import {GameBoard, coordinate, shipOrientation} from './gameboard'
+import { GameBoard, coordinate, shipOrientation } from "./gameboard";
+const myBoard = GameBoard();
 
-describe(`Ship`,()=>{
-  const myShip = Ship(shipType.BATTLESHIP, shipOrientation.HORIZONTAL) 
-  test(`Create a Battleship`, ()=>{
-    expect(myShip.length).toBe(4);
-  })
-  test(`Throw exception if no shipType is specified`,()=>{
-    expect(()=>{Ship()}).toThrowError(`Can't create ship without a specific ship type`);
-  })
-  test(`Hit points increase when hit function is called`, ()=>{
-    myShip.hit();
-    expect(myShip.hitpoints).toBe(1);
-  })
-  test(`Ship is sunk`, ()=>{
-    myShip.hit();
-    myShip.hit();
-    myShip.hit();
-    myShip.hit();
-    expect(myShip.isSunk).toBeTruthy();
-  })
-})
-
-describe(`GameBoard`,()=>{
-  const myBoard = GameBoard();
+describe(`Game board set up`, ()=>{
+  test('Game board size has to be 10',()=>{
+    expect(myBoard.size).toBe(10);
+  });
+});
+describe(`Ship placement`,()=>{
   let myCoordinate = coordinate(4,4);
-  test(`Check board constant size equals 10`, ()=>{
-    expect(myBoard.size).toBe(10); 
-  })
   test(`Place a DESTROYER ship on board center`, ()=>{
     myBoard.placeShips(shipType.DESTROYER, shipOrientation.HORIZONTAL, myCoordinate);  
     expect(myBoard.tiles.has(`${myCoordinate.x},${myCoordinate.y}`)).toBeTruthy();
@@ -58,7 +39,10 @@ describe(`GameBoard`,()=>{
     myCoordinate.x = 6;
     expect(()=>{myBoard.placeShips(shipType.BATTLESHIP,shipOrientation.VERTICAL, myCoordinate)}).toThrowError(`Part of ship is out of board Y boundary`);
   })
+})
 
+describe(`Ship log`, ()=>{
+  let myCoordinate = coordinate(4,4);
   test(`Ship is logged after being placed`,()=>{
     myCoordinate.x = 4;
     myCoordinate.y = 4;
