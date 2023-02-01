@@ -45,10 +45,9 @@ const gameboardActions = {
   },
   getAttack(coordinate){
     if(!this.tiles.has(`${coordinate.x},${coordinate.y}`))
-      this.tiles.set(`${coordinate.x}, ${coordinate.y}`, undefined);
+      this.tiles.set(`${coordinate.x},${coordinate.y}`, undefined);
     else{
-      const ID = this.tiles.get(`${coordinate.x}, ${coordinate.y}`);
-      const hitShip = this.shipsLog.get(ID);
+      this.shipsLog.get(this.tiles.get(`${coordinate.x},${coordinate.y}`)).hit();
     }
   },
 }
@@ -57,7 +56,6 @@ const gameboardActions = {
 function GameBoard (){
   const gameboard = Object.create(gameboardActions);
   gameboard.shipsLog= new Map(); 
-  gameboard.missedShots= [];
   gameboard.tiles= new Map(); 
   gameboard.size= 10;
 

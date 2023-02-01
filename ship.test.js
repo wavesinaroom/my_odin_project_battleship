@@ -11,7 +11,7 @@ describe(`Ship`,()=>{
   })
   test(`Hit points increase when hit function is called`, ()=>{
     myShip.hit();
-    expect(myShip.hitpoints).toBe(1);
+    expect(myShip.hitPoints).toBe(1);
   })
   test(`Ship is sunk`, ()=>{
     myShip.hit();

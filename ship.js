@@ -10,14 +10,14 @@ const shipType = {
 
 const shipActions = {
   hit(){
-    if(this.isSunk&&this.hitpoints>this.length)
+    if(this.isSunk&&this.hitPoints>this.length)
       throw new Error(`Ship should've been destroyed by now`);
 
-    ++this.hitpoints;
+    ++this.hitPoints;
     this.checkShipState();
   },
   checkShipState(){
-    if(this.hitpoints==this.length)
+    if(this.hitPoints==this.length)
       return this.isSunk = true;
   }
 }
@@ -25,7 +25,7 @@ const shipActions = {
 function Ship(type){
 
   const ship = Object.create(shipActions); 
-  ship.hitpoints = 0;
+  ship.hitPoints = 0;
   ship.isSunk = false;
   ship.ID = undefined;
 

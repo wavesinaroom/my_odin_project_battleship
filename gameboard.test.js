@@ -1,4 +1,4 @@
-import {shipType} from './ship'
+import {shipType,Ship} from './ship'
 import { GameBoard, coordinate, shipOrientation } from "./gameboard";
 const myBoard = GameBoard();
 
@@ -45,13 +45,12 @@ describe(`Shots`,()=>{
   let myCoordinate=coordinate(8,8);
   test(`Failed shot logs undefined in GameBoard tiles`, ()=>{
     myBoard.getAttack(myCoordinate);
-    expect(myBoard.tiles.has(`${myCoordinate.x},${myCoordinate.y}`)).toBeFalsy();
     expect(myBoard.tiles.get(`${myCoordinate.x},${myCoordinate.y}`)).toBe(undefined);
   })
   test(`Hits a ship`,()=>{
     myCoordinate = coordinate(4,4);
     myBoard.getAttack(myCoordinate);
-    expect(myBoard.shipsLog.has(`${myCoordinate.x},${myCoordinate.y}`)).toBeTruthy();
+    expect(()=>{myBoard.shipsLog.get(myBoard.tiles.get(`${coordinate.x},${coordinate.y}`))}).not.toBe(undefined);
   })
 })
 
