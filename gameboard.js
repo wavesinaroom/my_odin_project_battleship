@@ -41,12 +41,15 @@ const gameboardActions = {
     }else
       throw new Error(`Undefined ship orientation`);
 
-    this.shipsLog.set(ship.ID, ship.shipType);
-
+    this.shipsLog.set(ship.ID, ship);
   },
   getAttack(coordinate){
     if(!this.tiles.has(`${coordinate.x},${coordinate.y}`))
-      this.tiles.set(`${coordinate.x}, ${coordinate.y}`, undefined)
+      this.tiles.set(`${coordinate.x}, ${coordinate.y}`, undefined);
+    else{
+      const ID = this.tiles.get(`${coordinate.x}, ${coordinate.y}`);
+      const hitShip = this.shipsLog.get(ID);
+    }
   },
 }
 
