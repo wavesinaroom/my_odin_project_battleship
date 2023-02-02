@@ -48,21 +48,27 @@ const gameboardActions = {
   getAttack(inputCoordinate){
     let isShip, ID;
     this.tiles.forEach(tile=>{
-      if(tile.coordinate.y===inputCoordinate.y&&tile.coordinate.x===inputCoordinate.x)
-        if(tile.id){
-          ID = tile.id;
-          return isShip = true;
-        }
+      if(tile.coordinate.y===inputCoordinate.y&&tile.coordinate.x===inputCoordinate.x&&tile.id){
+        ID = tile.id;
+        return isShip = true;
+      }
     })
-    isShip?this.shipsLog.get(ID).hit():this.shipsLog.set(`${inputCoordinate.x},${inputCoordinate.y}`, undefined);
+    if(isShip){
+      this.shipsLog.get(ID).hit()
+      this.removeShip(ID);
+    }else
+      this.shipsLog.set(`${inputCoordinate.x},${inputCoordinate.y}`, undefined);
+
   },
 
-  removeShip(shipID){
-    const it = this.tiles.values();
-    for(let i = 0; i>this.tiles.size; ++i){
-      
+  removeShip(ID){
+    if(this.shipsLog.get(ID).isSunk){
+      this.shipsLog.delete(ID);
+      for(let i = 0; i<this.tiles.length; ++i)
+        if(this.tiles[i].id===ID)
+          this.tiles.splice(i,1);
     }
-  },
+  }
 }
 
 
