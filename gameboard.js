@@ -33,12 +33,12 @@ const gameboardActions = {
       if(inputCoordinate.x + ship.length > this.size)
         throw new Error(`Part of ship is out of board X boundary`);
       for(let i = 0; i<ship.length; ++i)
-        this.tiles.push(tile(`${inputCoordinate.x+i},${inputCoordinate.y}`), `${ship.ID}`);
+        this.tiles.push(tile(coordinate(inputCoordinate.x+i, inputCoordinate.y), `${ship.ID}`));
     }else if(orientation === shipOrientation.VERTICAL){
       if(inputCoordinate.y + ship.length > this.size)
         throw new Error(`Part of ship is out of board Y boundary`);
       for(let i = 0; i<ship.length; ++i)
-        this.tiles.push(tile(`${inputCoordinate.x},${inputCoordinate.y+i}`), `${ship.ID}`);
+        this.tiles.push(tile(coordinate(inputCoordinate.x, inputCoordinate.y+1)), `${ship.ID}`);
     }else
       throw new Error(`Undefined ship orientation`);
 
@@ -53,21 +53,20 @@ const gameboardActions = {
         return isShip = true;
       }
     })
+
     if(isShip){
       this.shipsLog.get(ID).hit()
-      this.removeShip(ID);
+      if(this.shipsLog.get(ID).isSunk)
+        this.removeShip(ID);
     }else
-      this.shipsLog.set(`${inputCoordinate.x},${inputCoordinate.y}`, undefined);
-
+      this.shipsLog.set(coordinate(inputCoordinate.x, inputCoordinate.y), undefined);
   },
 
   removeShip(ID){
-    if(this.shipsLog.get(ID).isSunk){
-      this.shipsLog.delete(ID);
-      for(let i = 0; i<this.tiles.length; ++i)
-        if(this.tiles[i].id===ID)
-          this.tiles.splice(i,1);
-    }
+    this.shipsLog.delete(ID);
+    for(let i = 0; i<this.tiles.length; ++i)
+      if(this.tiles[i].id===ID)
+        this.tiles.splice(i,1);
   }
 }
 
