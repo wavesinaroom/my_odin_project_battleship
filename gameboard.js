@@ -1,5 +1,5 @@
 import {  Ship } from "./ship"
-export {GameBoard, coordinate, shipOrientation}
+export {GameBoard, coordinate, shipOrientation, tile}
 
 function coordinate(x,y){
   const boardSize = 10;
@@ -26,7 +26,7 @@ const gameboardActions = {
   
     this.tiles.forEach(tile=>{
       if(tile.coordinate.x === inputCoordinate.x && tile.coordinate.y === inputCoordinate.y)
-      throw new Error(`There's already an object on that inputCoordinate`);
+      throw new Error(`There's already an object on that input coordinate`);
     })
 
     if(orientation === shipOrientation.HORIZONTAL){
@@ -38,7 +38,7 @@ const gameboardActions = {
       if(inputCoordinate.y + ship.length > this.size)
         throw new Error(`Part of ship is out of board Y boundary`);
       for(let i = 0; i<ship.length; ++i)
-        this.tiles.push(tile(coordinate(inputCoordinate.x, inputCoordinate.y+1)), `${ship.ID}`);
+        this.tiles.push(tile(coordinate(inputCoordinate.x, inputCoordinate.y+i), `${ship.ID}`));
     }else
       throw new Error(`Undefined ship orientation`);
 
