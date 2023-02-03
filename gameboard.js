@@ -56,8 +56,10 @@ const gameboardActions = {
 
     if(isShip){
       this.shipsLog.get(ID).hit()
-      if(this.shipsLog.get(ID).isSunk)
+      if(this.shipsLog.get(ID).isSunk){
         this.removeShip(ID);
+        this.checkSunkFleet();
+      }
     }else
       this.tiles.push(tile(inputCoordinate, undefined));
   },
@@ -67,7 +69,12 @@ const gameboardActions = {
     for(let i = 0; i<this.tiles.length; ++i)
       if(this.tiles[i].id===ID)
         this.tiles.splice(i,1);
+  },
+
+  checkSunkFleet(){
+    this.shipsLog.size === 0 ? this.sunkFleet=true:this.sunkFleet=false;
   }
+
 }
 
 
@@ -76,6 +83,7 @@ function GameBoard (){
   gameboard.shipsLog = new Map();
   gameboard.tiles= []; 
   gameboard.size= 10;
+  gameboard.sunkFleet = false;
 
     return gameboard;
 }

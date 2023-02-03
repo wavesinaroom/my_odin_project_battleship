@@ -59,17 +59,21 @@ describe(`Shots`,()=>{
     myBoard.getAttack(myShot);
     expect(myBoard.shipsLog.get(`${myShot.x},${myShot.y}`).hitPoints).toEqual(1);
   })
-  test(`Ships is sunk`,()=>{
-    myShot = coordinate(4,4);
-    myBoard.getAttack(myShot);
-    expect(myBoard.shipsLog.has(`${myShot.x},${myShot.y}`)).toBeFalsy;
-  })
 })
 
 describe(`Ship log`, ()=>{
   let myCoordinate = coordinate(4,4);
-  test(`Ship is logged after being placed`,()=>{
-    myCoordinate.x = 4;
-    myCoordinate.y = 4;
+  test(`Ships is sunk`,()=>{
+    myCoordinate = coordinate(4,4);
+    myBoard.getAttack(myCoordinate);
+    expect(myBoard.shipsLog.has(`${myCoordinate.x},${myCoordinate.y}`)).toBeFalsy;
+  })
+  test(`Sunk fleet`, ()=>{
+    myBoard.shipsLog.clear();
+    myBoard.placeShips(shipType.DESTROYER, shipOrientation.HORIZONTAL, myCoordinate);
+    expect(myBoard.sunkFleet).toBeFalsy();
+    myBoard.getAttack(myCoordinate);
+    myBoard.getAttack(myCoordinate);
+    expect(myBoard.sunkFleet).toBeTruthy();
   })
 })
