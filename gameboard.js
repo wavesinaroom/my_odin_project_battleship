@@ -59,7 +59,7 @@ const gameboardActions = {
       if(this.shipsLog.get(ID).isSunk)
         this.removeShip(ID);
     }else
-      this.shipsLog.set(coordinate(inputCoordinate.x, inputCoordinate.y), undefined);
+      this.tiles.push(tile(inputCoordinate, undefined));
   },
 
   removeShip(ID){

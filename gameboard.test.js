@@ -47,19 +47,24 @@ describe(`Ship placement`,()=>{
   })
 })
 
-/*describe(`Shots`,()=>{
-  let myCoordinate=coordinate(8,8);
+describe(`Shots`,()=>{
+    let myShot=coordinate(8,8);
+    
   test(`Failed shot logs undefined in GameBoard tiles`, ()=>{
-    myBoard.getAttack(myCoordinate);
+    myBoard.getAttack(myShot);
+    expect(myBoard.tiles).toContainEqual(tile(myShot, undefined))
   })
   test(`Hits a ship`,()=>{
-    myCoordinate = coordinate(4,4);
-    myBoard.getAttack(myCoordinate);
+    myShot = coordinate(4,4);
+    myBoard.getAttack(myShot);
+    expect(myBoard.shipsLog.get(`${myShot.x},${myShot.y}`).hitPoints).toEqual(1);
   })
-  test(`Sinking ship`, ()=>{
-     
+  test(`Ships is sunk`,()=>{
+    myShot = coordinate(4,4);
+    myBoard.getAttack(myShot);
+    expect(myBoard.shipsLog.has(`${myShot.x},${myShot.y}`)).toBeFalsy;
   })
-})*/
+})
 
 describe(`Ship log`, ()=>{
   let myCoordinate = coordinate(4,4);
