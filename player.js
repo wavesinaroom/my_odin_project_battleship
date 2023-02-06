@@ -1,6 +1,14 @@
-import {GameBoard} from './gameboard';
+import {coordinate, GameBoard} from './gameboard';
+import { EventManager } from './eventmanager';
 export {Player}
-function Player(name){
 
-  return{name:name, board: GameBoard()}
+const playerLabels = {
+  PLAYER: Symbol(`player`), 
+  CPU: Symbol(`cpu`)
+}
+
+function Player(name, playerLabel){
+  const eventManager = EventManager; 
+  fire = (playerLabels, coordinate);
+  return{name:name, board: GameBoard(), playerLabel:playerLabel}
 }

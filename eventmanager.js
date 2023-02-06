@@ -1,10 +1,6 @@
-export {GameManager}
+export {EventManager}
 
-const playerLabels = {
-  PLAYER: Symbol(`player`), 
-  CPU: Symbol(`cpu`)
-}
-const GameManager = {
+const EventManager = {
   player,
   cpu,
   notifyAttack(who, coordinate){
@@ -13,6 +9,6 @@ const GameManager = {
     else if(who === playerLabels.CPU)
       cpu.board.getAttack(coordinate);
     else
-      throw new Error(`Invalid player`)
+      throw new Error(`Invalid player`);
   }
 }
