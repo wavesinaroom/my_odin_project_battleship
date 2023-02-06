@@ -1,6 +1,6 @@
-import GameBoard from './gameboard';
+import {GameBoard} from './gameboard';
 export {Player}
 function Player(name){
 
-  return{name:name, board: GameBoard}
+  return{name:name, board: GameBoard()}
 }
