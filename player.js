@@ -7,8 +7,17 @@ const playerLabels = {
   CPU: Symbol(`cpu`)
 }
 
+const playerActions = {
+  eventManager: EventManager,
+  fire(coordinate){
+    this.eventManager.notifyAttack(this.playerLabel, coordinate);
+  }
+}
+
 function Player(name, playerLabel){
-  const eventManager = EventManager; 
-  fire = (playerLabels, coordinate);
-  return{name:name, board: GameBoard(), playerLabel:playerLabel}
+  const player = Object.create(playerActions);
+  player.name = name;
+  player.board = GameBoard();
+  player.label = playerLabel;
+  return player;
 }
