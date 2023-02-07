@@ -9,5 +9,9 @@ const GameManager = {
   setUpPlayer(name){
     this.player = Player(name);
     this.turn = this.player.name;
+  },
+
+  changeTurn(who){
+    who === `CPU`? this.turn = this.player.name : this.turn = who;
   }
 }

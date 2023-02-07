@@ -7,12 +7,7 @@ const EventManager = {
     if(!who)
       throw new Error(`Unknown player`);
     else
-      if(who === `CPU`){
-        GameManager.player.board.getAttack(coordinate)  
-        GameManager.turn = GameManager.player.name;
-      }else{
-        GameManager.cpu.board.getAttack(coordinate);
-        GameManager.turn = who;
-      }
+      who === `CPU` ? GameManager.player.board.getAttack(coordinate):GameManager.cpu.board.getAttack(coordinate);
+    GameManager.changeTurn(who);
   }
 }
