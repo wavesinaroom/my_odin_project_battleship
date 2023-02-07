@@ -8,6 +8,6 @@ const GameManager = {
   
   setUpPlayer(name){
     this.player = Player(name);
-    this.player = this.player.name;
+    this.turn = this.player.name;
   }
 }
