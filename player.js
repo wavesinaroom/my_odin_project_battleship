@@ -3,9 +3,8 @@ import { EventManager } from './eventmanager';
 export {Player}
 
 const playerActions = {
-  eventManager: EventManager,
   fire(coordinate){
-    this.eventManager.notifyAttack(this.name, coordinate);
+    EventManager.notifyAttack(this.name, coordinate);
   }
 }
 

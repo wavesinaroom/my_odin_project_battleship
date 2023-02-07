@@ -1,10 +1,11 @@
-import {Player} from "./player";
+import {Player} from "./player"; 
+import {CPU} from "./cpu"
 export {GameManager}
 
 const GameManager = {
   turn: undefined,
   player: undefined,
-  cpu: Player(),
+  cpu: CPU,
   
   setUpPlayer(name){
     this.player = Player(name);
@@ -16,6 +17,9 @@ const GameManager = {
       gameOver();
     else
       who === `CPU`? this.turn = this.player.name : this.turn = who;
+
+    if(this.turn === `CPU`)
+      this.cpu.fire();
   },
 
   gameOver(){
