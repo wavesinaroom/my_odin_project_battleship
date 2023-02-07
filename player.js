@@ -2,22 +2,18 @@ import {coordinate, GameBoard} from './gameboard';
 import { EventManager } from './eventmanager';
 export {Player}
 
-const playerLabels = {
-  PLAYER: Symbol(`player`), 
-  CPU: Symbol(`cpu`)
-}
-
 const playerActions = {
   eventManager: EventManager,
   fire(coordinate){
-    this.eventManager.notifyAttack(this.playerLabel, coordinate);
+    this.eventManager.notifyAttack(this.name, coordinate);
   }
 }
 
-function Player(name, playerLabel){
+function Player(name){
   const player = Object.create(playerActions);
-  player.name = name;
   player.board = GameBoard();
-  player.label = playerLabel;
+  name === undefined ? player.name = `CPU`: player.name = name;
   return player;
 }
+
+

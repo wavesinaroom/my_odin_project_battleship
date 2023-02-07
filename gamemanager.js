@@ -1,8 +1,8 @@
-import {Player, playerLabels} from "./player";
-
+import {Player} from "./player";
+export {GameManager}
 
 const GameManager = {
-  turn,
-  player: Player(playerLabels),
+  turn: undefined,
+  player: undefined,
   cpu: Player(),
 }

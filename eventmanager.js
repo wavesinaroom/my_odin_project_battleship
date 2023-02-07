@@ -1,19 +1,14 @@
 import {GameManager} from './gamemanager'
-import {playerLabels} from './player'
 export {EventManager}
 
 const EventManager = {
   gameManager: GameManager,
   notifyAttack(who, coordinate){
-    if(who === playerLabels.PLAYER){
-      GameManager.player.board.getAttack(coordinate);
-      GameManager.turn = playerLabels.CPU;
-    }
-    else if(who === playerLabels.CPU){
-      GameManager.cpu.board.getAttack(coordinate);
-      GameManager.turn = playerLabels.PLAYER
-    }
+    if(!who)
+      throw new Error(`Unknown player`);
     else
-      throw new Error(`Invalid player`);
+      who === `CPU` ? GameManager.player.board.getAttack(coordinate) : GameManager.cpu.board.getAttack(coordinate);
+
+    GameManager.turn = who;
   }
 }
