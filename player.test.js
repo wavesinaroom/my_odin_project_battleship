@@ -1,7 +1,7 @@
-import {GameBoard, coordinate, shipOrientation} from "./gameboard";
 import { shipType } from "./ship";
-import {GameManager} from './gamemanager';
 import {Player} from "./player";
+import {GameBoard, coordinate, shipOrientation, tile} from "./gameboard";
+import {GameManager} from './gamemanager';
 import {EventManager} from "./eventmanager";
 
 GameManager.player = Player(`Pablo`)
@@ -13,9 +13,9 @@ describe(`Player set up`, ()=>{
   test(`Player has a board to play with`, ()=>{
     expect(GameManager.player.board).toMatchObject(GameBoard());
   });
-})
+});
 
-describe(`Player's actions`,()=>{
+describe(`Player's attack`,()=>{
 
   GameManager.cpu = Player();
   GameManager.cpu.board.placeShips(shipType.DESTROYER, shipOrientation.HORIZONTAL, coordinate(4,4))
@@ -28,7 +28,8 @@ describe(`Player's actions`,()=>{
     expect(eventManager).toBeCalled();
     expect(cpuGetsAttack).toBeCalledWith(myCoordinate);
     expect(GameManager.cpu.board.shipsLog.has(`${myCoordinate.x},${myCoordinate.y}`)).toBeFalsy();
-  })
+    expect(GameManager.cpu.board.tiles).toContainEqual(tile(myCoordinate, undefined));
+  });
 
   test(`Pablo fires a missile and hits his target ship`, ()=>{
     myCoordinate.x = 4;
@@ -38,8 +39,9 @@ describe(`Player's actions`,()=>{
     expect(eventManager).toBeCalled();
     expect(cpuGetsAttack).toBeCalledWith(myCoordinate);
     expect(GameManager.cpu.board.shipsLog.has(`${myCoordinate.x},${myCoordinate.y}`)).toBeTruthy();
-  })
-})
+    expect(GameManager.cpu.board.tiles).toContainEqual(tile(myCoordinate, GameManager.cpu.id));
+  });
+});
 
 
 
