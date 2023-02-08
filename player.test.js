@@ -16,6 +16,7 @@ describe(`Player set up`, ()=>{
 })
 
 describe(`Player's actions`,()=>{
+
   GameManager.cpu = Player();
   GameManager.cpu.board.placeShips(shipType.DESTROYER, shipOrientation.HORIZONTAL, coordinate(4,4))
   let myCoordinate = coordinate(5,5);
@@ -28,8 +29,15 @@ describe(`Player's actions`,()=>{
     expect(cpuGetsAttack).toBeCalledWith(myCoordinate);
     expect(GameManager.cpu.board.shipsLog.has(`${myCoordinate.x},${myCoordinate.y}`)).toBeFalsy();
   })
-  test(`Pablo fires a missile and hits ship target`, ()=>{
-     
+
+  test(`Pablo fires a missile and hits his target ship`, ()=>{
+    myCoordinate.x = 4;
+    myCoordinate.y = 4;
+
+    GameManager.player.fire(myCoordinate);
+    expect(eventManager).toBeCalled();
+    expect(cpuGetsAttack).toBeCalledWith(myCoordinate);
+    expect(GameManager.cpu.board.shipsLog.has(`${myCoordinate.x},${myCoordinate.y}`)).toBeTruthy();
   })
 })
 
