@@ -7,6 +7,8 @@ const GameManager = {
   cpu: undefined,
   
   setUpGame(name){
+    if(!name)
+      throw new Error(`Player needs a name`);
     this.player = Player(name);
     this.turn = this.player.name;
     this.cpu = Player();
