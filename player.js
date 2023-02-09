@@ -11,6 +11,10 @@ const playerActions = {
 const cpuActions = {
   fire(coordinate){
     EventManager.notifyAttack(this.name, coordinate);
+  },
+
+  randomCoordinate(){
+    return coordinate(Math.floor(Math.random()*10),Math.floor(Math.random()*10))
   }
 }
 

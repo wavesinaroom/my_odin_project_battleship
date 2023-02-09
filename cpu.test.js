@@ -1,7 +1,12 @@
+import {coordinate} from "./gameboard";
 import { GameManager } from "./gamemanager";
 
-describe(`CPU set up`, ()=>{
-  test(`Placeholder before commit`,()=>{
-
+GameManager.setUpGame(`Pablo`)
+describe(`Attack`, ()=>{
+  test(`Generates a random coordinate`,()=>{
+    const coordinateOne = GameManager.cpu.randomCoordinate();
+    const coordinateTwo = GameManager.cpu.randomCoordinate();
+    expect(coordinateOne).not.toBeUndefined();
+    expect(coordinateOne).not.toEqual(coordinateTwo);
   })
 })
