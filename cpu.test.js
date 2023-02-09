@@ -20,5 +20,9 @@ describe(`Attack`, ()=>{
 })
 
 describe(`Random CPU ships placement`, ()=>{
-
+  
+  GameManager.cpu.placeRandomShip();
+  test(`Place a random ship`, ()=>{
+    expect(GameManager.cpu.board.shipsLog.size).toEqual(1);
+  })
 })
