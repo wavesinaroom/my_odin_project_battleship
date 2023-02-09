@@ -8,10 +8,22 @@ const playerActions = {
   }
 }
 
+const cpuActions = {
+  fire(coordinate){
+    EventManager.notifyAttack(this.name, coordinate);
+  }
+}
+
 function Player(name){
-  const player = Object.create(playerActions);
+  let player;
+  if(name){
+    player = Object.create(playerActions);
+    player.name = name;
+  }else{
+    player = Object.create(cpuActions);
+    player.name = `CPU`;
+  }
   player.board = GameBoard();
-  name === undefined ? player.name = `CPU`: player.name = name;
   return player;
 }
 
