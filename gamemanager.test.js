@@ -1,4 +1,3 @@
-import {EventManager} from "./eventmanager";
 import {coordinate, shipOrientation} from "./gameboard"
 import {GameManager} from "./gamemanager"
 import {Player} from "./player"
