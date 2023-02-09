@@ -1,4 +1,0 @@
-export {CPU};
-
-const CPU ={
-}
