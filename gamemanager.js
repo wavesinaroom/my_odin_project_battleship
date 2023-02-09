@@ -1,15 +1,15 @@
 import {Player} from "./player"; 
-import {CPU} from "./cpu"
 export {GameManager}
 
 const GameManager = {
   turn: undefined,
   player: undefined,
-  cpu: CPU,
+  cpu: undefined,
   
   setUpPlayer(name){
     this.player = Player(name);
     this.turn = this.player.name;
+    this.cpu = Player();
   },
 
   changeTurn(who){
