@@ -14,8 +14,9 @@ const cpuActions = {
   },
 
   randomCoordinate(){
-    return coordinate(Math.floor(Math.random()*10),Math.floor(Math.random()*10))
+    return coordinate(Math.floor(Math.random()*(10-1)+1),Math.floor(Math.random()*(10-1)+1));
   }
+
 }
 
 function Player(name){
