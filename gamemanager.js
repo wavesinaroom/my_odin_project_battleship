@@ -25,6 +25,7 @@ const GameManager = {
   gameOver(){
     this.player = undefined;
     this.cpu.board.tiles.splice(0, this.cpu.board.tiles.length);
+    this.cpu.board.shipsLog.clear();
   }
 
 }
