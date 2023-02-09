@@ -10,6 +10,9 @@ beforeEach(()=>{
 })
 
 describe(`Player set up`,()=>{
+  test(`There's a CPU player`,()=>{
+    expect(GameManager.cpu).not.toBeUndefined();
+  })
   GameManager.setUpGame(`Amy`);
   test(`Sets up player's name`,()=>{
     expect(GameManager.player.name).toStrictEqual(`Amy`) 
