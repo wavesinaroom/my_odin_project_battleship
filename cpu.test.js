@@ -14,8 +14,7 @@ describe(`Attack`, ()=>{
   })
   test(`Fires a missile with random coordinates`, ()=>{
     const eventSpy = jest.spyOn(EventManager, 'notifyAttack');
-    GameManager.turn = GameManager.cpu.name;
-    GameManager.cpu.fire();
-    expect(eventSpy).toBeCalled();
+    GameManager.player.fire(coordinate(1,10));
+    expect(eventSpy).toHaveBeenCalledTimes(2);
   })
 })

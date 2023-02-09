@@ -9,7 +9,7 @@ const playerActions = {
 }
 
 const cpuActions = {
-  fire(coordinate){
+  fire(){
     EventManager.notifyAttack(this.name, coordinate);
   },
 

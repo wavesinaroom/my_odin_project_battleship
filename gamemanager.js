@@ -18,7 +18,7 @@ const GameManager = {
     if(this.player.board.sunkFleet||this.cpu.board.sunkFleet)
       this.gameOver();
     else
-      who === `CPU`? this.turn = this.player.name : this.turn = who;
+      who === this.cpu.name? this.turn = this.player.name : this.turn = this.cpu.name;
 
     if(this.turn === `CPU`)
       this.cpu.fire();
