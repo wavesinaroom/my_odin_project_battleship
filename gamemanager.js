@@ -6,7 +6,7 @@ const GameManager = {
   player: undefined,
   cpu: undefined,
   
-  setUpPlayer(name){
+  setUpGame(name){
     this.player = Player(name);
     this.turn = this.player.name;
     this.cpu = Player();
@@ -24,8 +24,7 @@ const GameManager = {
 
   gameOver(){
     this.player = undefined;
-    this.cpu.board.tiles.splice(0, this.cpu.board.tiles.length);
-    this.cpu.board.shipsLog.clear();
+    this.cpu = undefined;
   }
 
 }

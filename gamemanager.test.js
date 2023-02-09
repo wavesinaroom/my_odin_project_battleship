@@ -6,11 +6,11 @@ import {shipType} from "./ship";
 GameManager.cpu = Player();
 
 beforeEach(()=>{
-  GameManager.setUpPlayer(`Amy`);
+  GameManager.setUpGame(`Amy`);
 })
 
 describe(`Player set up`,()=>{
-  GameManager.setUpPlayer(`Amy`);
+  GameManager.setUpGame(`Amy`);
   test(`Sets up player's name`,()=>{
     expect(GameManager.player.name).toStrictEqual(`Amy`) 
   })
@@ -37,10 +37,8 @@ describe(`End game`, ()=>{
     const gameOverSpy = jest.spyOn(GameManager, 'gameOver');
     GameManager.player.fire(coordinate(5,5));
     GameManager.player.fire(coordinate(6,5));
-    expect(GameManager.cpu.board.sunkFleet).toBeTruthy();
     expect(gameOverSpy).toBeCalled();
     expect(GameManager.player).toBeUndefined();
-    expect(GameManager.cpu.board.shipsLog.size).toBe(0);
-    expect(GameManager.cpu.board.tiles.length).toBe(0);
+    expect(GameManager.cpu).toBeUndefined();
   })
 })

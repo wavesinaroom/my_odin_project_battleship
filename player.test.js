@@ -4,7 +4,7 @@ import {GameBoard, coordinate, shipOrientation, tile} from "./gameboard";
 import {GameManager} from './gamemanager';
 import {EventManager} from "./eventmanager";
 
-GameManager.setUpPlayer(`Pablo`);
+GameManager.setUpGame(`Pablo`);
 
 describe(`Player set up`, ()=>{
   test(`Player's name is Pablo`,()=>{
