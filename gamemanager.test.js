@@ -1,12 +1,17 @@
 import {EventManager} from "./eventmanager";
-import {coordinate} from "./gameboard"
+import {coordinate, shipOrientation} from "./gameboard"
 import {GameManager} from "./gamemanager"
 import {Player} from "./player"
+import {shipType} from "./ship";
 
 GameManager.cpu = Player();
 
+beforeEach(()=>{
+  GameManager.setUpPlayer(`Amy`);
+})
+
 describe(`Player set up`,()=>{
-  GameManager.setUpPlayer(`Amy`)
+  GameManager.setUpPlayer(`Amy`);
   test(`Sets up player's name`,()=>{
     expect(GameManager.player.name).toStrictEqual(`Amy`) 
   })
@@ -28,5 +33,15 @@ describe(`Turn changes`, ()=>{
 })
 
 describe(`End game`, ()=>{
-
+  GameManager.cpu.board.placeShips(shipType.DESTROYER, shipOrientation.HORIZONTAL, coordinate(5,5));
+  describe(`Players' values are reset`, ()=>{
+    const gameOverSpy = jest.spyOn(GameManager, 'gameOver');
+    GameManager.player.fire(coordinate(5,5));
+    GameManager.player.fire(coordinate(6,5));
+    expect(GameManager.cpu.board.sunkFleet).toBeTruthy();
+    expect(gameOverSpy).toBeCalled();
+    expect(GameManager.player).toBeUndefined();
+    expect(GameManager.cpu.board.shipsLog.size).toBe(0);
+    expect(GameManager.cpu.board.tiles.length).toBe(0);
+  })
 })

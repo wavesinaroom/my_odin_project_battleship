@@ -13,8 +13,8 @@ const GameManager = {
   },
 
   changeTurn(who){
-    if(this.player.board.sunkFleet||this.cpu.sunkFleet)
-      gameOver();
+    if(this.player.board.sunkFleet||this.cpu.board.sunkFleet)
+      this.gameOver();
     else
       who === `CPU`? this.turn = this.player.name : this.turn = who;
 
@@ -23,12 +23,8 @@ const GameManager = {
   },
 
   gameOver(){
-    this.player.board.tiles.splice(0, this.player.tiles.length-1);
-    this.player.board.shipsLog.clear();
     this.player = undefined;
-
-    this.cpu.board.tiles.splice(0, this.cpu.tiles.length-1);
-    this.cpu.board.shipsLog.clear();
+    this.cpu.board.tiles.splice(0, this.cpu.board.tiles.length);
   }
 
 }
