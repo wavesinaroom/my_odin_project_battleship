@@ -1,5 +1,6 @@
 import {coordinate, GameBoard} from './gameboard';
 import { EventManager } from './eventmanager';
+import {GameManager} from './gamemanager';
 export {Player}
 
 const playerActions = {
@@ -18,7 +19,9 @@ const cpuActions = {
   },
 
   randomCoordinate(){
-    return coordinate(Math.floor(Math.random()*(10-1)+1),Math.floor(Math.random()*(10-1)+1));
+    const boardSize = GameManager.cpu.board.size;
+    const minTileNum = 1;
+    return coordinate(Math.floor(Math.random()*(boardSize-minTileNum)+minTileNum),Math.floor(Math.random()*(boardSize-minTileNum)+minTileNum));
   }
 
 }
