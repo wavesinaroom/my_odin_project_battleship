@@ -18,3 +18,7 @@ describe(`Attack`, ()=>{
     expect(eventSpy).toHaveBeenCalledTimes(2);
   })
 })
+
+describe(`Random CPU ships placement`, ()=>{
+
+})

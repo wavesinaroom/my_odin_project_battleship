@@ -10,7 +10,11 @@ const playerActions = {
 
 const cpuActions = {
   fire(){
-    EventManager.notifyAttack(this.name, coordinate);
+    let attackCoord = this.randomCoordinate();
+    if(this.board.tiles.includes(attackCoord))
+      attackCoord = this.randomCoordinate();
+
+    EventManager.notifyAttack(this.name, attackCoord);
   },
 
   randomCoordinate(){
