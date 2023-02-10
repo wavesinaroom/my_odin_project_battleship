@@ -2,7 +2,7 @@
   "name": "battleship",
   "version": "1.0.0",
   "description": "Battleship game web app clone",
-  "main": "sum.js",
+  "private": true,
   "scripts": {
     "test": "jest"
   },
