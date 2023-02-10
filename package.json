@@ -4,7 +4,8 @@
   "description": "Battleship game web app clone",
   "private": true,
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
