@@ -3,7 +3,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry:'./src/index.js',
+  entry:{
+    index: './src/index.js',
+    gameboard: './src/gameboard.js',
+    gamemanager: './src/gamemanager.js',
+    player: './src/player.js',
+    ship: './src/ship.js',
+    eventmanager: './src/eventmanager.js'
+  },
   devtool: 'inline-source-map',
   devServer: {
     static: './dist',
