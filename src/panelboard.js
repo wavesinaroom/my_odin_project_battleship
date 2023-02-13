@@ -1,10 +1,17 @@
-export default function panelBoard(tableName){
-  let table = document.createElement('table');
-    table.innerHTML += `<caption>${tableName}</caption>`;
-    table.appendChild(createBody());
-  return table;
+export default function GridPanel(tableName){
+  const gridPanel = Object.create(gridActions)
+  gridPanel.content = document.createElement('table');
+  gridPanel.content.innerHTML += `<caption>${tableName}</caption>`;
+  gridPanel.cells = createGrid();  
+  gridPanel.content.appendChild(gridPanel.cells);
+  return gridPanel;
 }
 
+const gridActions = {
+  renderCell(coordinate, character){
+      this.cells.querySelectorAll(`tr`)[coordinate.y].querySelectorAll(`td`)[coordinate.x].innerHTML = character;
+  }
+}
 function createRow (){
   let row =  document.createElement('tr')
   for(let i = 0; i<10; ++i)
@@ -12,9 +19,9 @@ function createRow (){
   return row;
 }
 
-function createBody(){
+function createGrid(){
   let body = document.createElement('tbody')
   for(let i = 0; i<10; ++i)
-    body.appendChild(createRow())
+    body.appendChild(createRow());
   return body;
 }

@@ -1,5 +1,5 @@
-import {GameManager} from './gamemanager'
 export {EventManager}
+import {GameManager} from './gamemanager'
 
 const EventManager = {
   gameManager: GameManager,
