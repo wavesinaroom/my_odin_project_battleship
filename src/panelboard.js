@@ -1,4 +1,4 @@
-function panelBoard(tableName){
+export default function panelBoard(tableName){
   let table = document.createElement('table');
   function addHeader(header){
     table.innerHTML += `<thead>
