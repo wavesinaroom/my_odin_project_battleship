@@ -5,4 +5,5 @@ import panelBoard from './panelboard'
 const board = panelBoard(`Pablo`)
 alert(`Yaaa`)
 document.body.appendChild(board);
-board.querySelectorAll('tr')[2].querySelectorAll('td')[5].innerHTML = `3`
+board.querySelectorAll('tr')[0].innerHTML = `papaya`
+board.querySelectorAll('tr')[5].querySelectorAll('td')[9].innerHTML = `3`

@@ -1,10 +1,6 @@
 export default function panelBoard(tableName){
   let table = document.createElement('table');
-    table.innerHTML += `<thead>
-                          <tr>
-                            <th colspan=10>${tableName}</th>
-                          </tr>
-                        </thead>`
+    table.innerHTML += `<caption>${tableName}</caption>`;
     table.appendChild(createBody());
   return table;
 }
