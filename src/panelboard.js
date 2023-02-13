@@ -5,20 +5,20 @@ export default function panelBoard(tableName){
                             <th colspan=10>${tableName}</th>
                           </tr>
                         </thead>`
-    table.appendChild(body());
+    table.appendChild(createBody());
   return table;
 }
 
-function row (){
+function createRow (){
   let row =  document.createElement('tr')
   for(let i = 0; i<10; ++i)
-    row.innerHTML += `<td></td>`;
+    row.innerHTML += `<td>.</td>`;
   return row;
 }
 
-function body(){
+function createBody(){
   let body = document.createElement('tbody')
   for(let i = 0; i<10; ++i)
-    body.appendChild(row())
+    body.appendChild(createRow())
   return body;
 }
