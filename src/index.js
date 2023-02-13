@@ -1,19 +1,8 @@
 import _ from 'lodash'
 import './style.css' 
-import Icon from './test.png'
+import panelBoard from './panelboard'
 
-function component(){
-  const element = document.createElement('div');
-  
-element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-  element.classList.add('hello');
+const test = panelBoard(`lucas`);
+document.body.appendChild('div')
+document.body.appendChild(test);
 
-  const myIcon = new Image();
-  myIcon.src = Icon;
-
-  element.appendChild(myIcon);
-
-  return element;
-}
-
-document.body.appendChild(component());
