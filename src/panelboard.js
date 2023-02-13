@@ -9,7 +9,7 @@ export default function GridPanel(tableName){
 
 const gridActions = {
   renderCell(coordinate, character){
-      this.cells.querySelectorAll(`tr`)[0].querySelectorAll(`td`)[1].innerHTML = character;
+      this.cells.querySelectorAll(`tr`)[coordinate[0]].querySelectorAll(`td`)[coordinate[1]].innerHTML = character;
   }
 }
 function createRow (){
