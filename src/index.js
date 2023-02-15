@@ -3,7 +3,7 @@ import './style.css'
 import Icon from './test.png'
 
 function component(){
-  console.log('Anything');;
+  console.log('anything');;
   const element = document.createElement('div');
   
 element.innerHTML = _.join(['Hello', 'webpack'], ' ');
