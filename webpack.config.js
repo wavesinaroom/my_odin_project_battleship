@@ -9,7 +9,8 @@ module.exports = {
     gamemanager: './src/gamemanager.js',
     player: './src/player.js',
     ship: './src/ship.js',
-    eventmanager: './src/eventmanager.js'
+    eventmanager: './src/eventmanager.js',
+    panelBoard: './src/panelboard.js'
   },
   devtool: 'inline-source-map',
   devServer: {
