@@ -25,6 +25,7 @@ describe(`Ship placement`,()=>{
     expect(myBoard.ships[0].coordinates).toContainEqual(coordinate(4,4));  
   });
   test(`Ships can't overlap on board`,()=>{
+    expect(()=>{myBoard.placeShip(shipType.BATTLESHIP, shipOrientation.VERTICAL, coordinate(4,4))}).toThrowError(`There's already a ship in that position`);
   });
   /*
   test(`Place a horizontal BATTLESHIP on board`, ()=>{
