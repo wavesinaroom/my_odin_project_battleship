@@ -9,42 +9,20 @@ const shipType = {
 
 
 const shipActions = {
-  hit(){
-    if(this.isSunk&&this.hitPoints>this.length)
-      throw new Error(`Ship should've been destroyed by now`);
+  hit(input){
+    this.coordinates.slice(this.coordinates.findIndex((coord)=>{(coord.x===input.x&&coord.y===input.y)}));
 
-    ++this.hitPoints;
-    this.checkShipState();
-  },
-  checkShipState(){
-    if(this.hitPoints==this.length)
+    if(this.coordinates.length === 0)
       return this.isSunk = true;
-  }
+  },
 }
 
-function Ship(type){
+function Ship(){
 
   const ship = Object.create(shipActions); 
-  ship.hitPoints = 0;
+  ship.coordinates = [];
   ship.isSunk = false;
-  ship.ID = undefined;
 
-  switch(type){
-    case(shipType.CARRIER):
-      ship.length = 5;
-      break;
-    case(shipType.BATTLESHIP):
-      ship.length = 4;
-      break;
-    case(shipType.CRUISER):
-      ship.length = 3;
-      break;
-    case(shipType.DESTROYER):
-      ship.length = 2;
-      break;
-    default:
-      throw new Error(`Can't create ship without a specific ship type`);
-  }
   return ship;
 }
 
