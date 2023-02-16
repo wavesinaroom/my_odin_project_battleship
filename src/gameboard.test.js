@@ -12,12 +12,12 @@ describe(`Coordinates`,()=>{
   });
 });
 
-/*
+
 describe(`Game board set up`, ()=>{
   test('Game board size has to be 10',()=>{
     expect(myBoard.size).toBe(10);
   });
-});
+});/*
 describe(`Ship placement`,()=>{
   test(`Place a DESTROYER ship on board center`, ()=>{
     myBoard.placeShips(shipType.DESTROYER, shipOrientation.HORIZONTAL, myCoordinate);  
