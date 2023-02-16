@@ -26,14 +26,16 @@ const gameboardActions = {
   generateCoordinates(orientation, inputCoordinate, array){
 
     if(orientation === shipOrientation.HORIZONTAL)
-      array.reduce((coordinate(inputCoordinate.x, inputCoordinate.y), coordinate(accumulator.x+1, accumulator.y)));
+      for(let i = 0; i<array.length; ++i)
+        array[i] = coordinate(inputCoordinate.x+i, inputCoordinate.y) ;
     else if(orientation === shipOrientation.VERTICAL)
-      array.reduce((coordinate(inputCoordinate.x, inputCoordinate.y), coordinate(accumulator.x, accumulator.y+1)));
+      for(let i = 0; i<array.length; ++i)
+        array[i] = coordinate(inputCoordinate.x, inputCoordinate.y+1) ;
   },
 
   placeShip(shipType, orientation, inputCoordinate){
 
-    this.forEach(ship=>{
+    this.ships.forEach(ship=>{
       ship.coordinates.forEach(coord=>{
         if(coord.x === inputCoordinate.x && coord.y === inputCoordinate.y)
           throw new Error(`There's already a ship in that position`);

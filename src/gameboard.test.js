@@ -20,8 +20,9 @@ describe(`Game board set up`, ()=>{
 });
 
 describe(`Ship placement`,()=>{
+  myBoard.placeShip(shipType.DESTROYER, shipOrientation.HORIZONTAL, coordinate(4,4));
   test(`Place a DESTROYER ship on board center`, ()=>{
-    expect(myBoard.ships[0].coordinates).toContain(coordinate(4,4));  
+    expect(myBoard.ships[0].coordinates).toContainEqual(coordinate(4,4));  
   });
   test(`Ships can't overlap on board`,()=>{
   });
