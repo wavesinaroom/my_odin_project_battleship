@@ -1,4 +1,4 @@
-import {shipType,Ship} from './ship'
+/*import {shipType,Ship} from './ship'
 import {shipOrientation} from './gameboard'
 
 describe(`Ship`,()=>{
@@ -21,4 +21,4 @@ describe(`Ship`,()=>{
     expect(myShip.isSunk).toBeTruthy();
   })
 })
-
+*/

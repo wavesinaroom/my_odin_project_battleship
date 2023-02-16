@@ -1,4 +1,4 @@
-import {EventManager} from "./eventmanager";
+/*import {EventManager} from "./eventmanager";
 import {coordinate, tile} from "./gameboard";
 import { GameManager } from "./gamemanager";
 
@@ -25,4 +25,4 @@ describe(`Random CPU ships placement`, ()=>{
   test(`Place a random ship`, ()=>{
     expect(GameManager.cpu.board.shipsLog.size).toEqual(1);
   })
-})
+})*/

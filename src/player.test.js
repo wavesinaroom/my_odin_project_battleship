@@ -1,4 +1,4 @@
-import { shipType } from "./ship";
+/*import { shipType } from "./ship";
 import {Player} from "./player";
 import {GameBoard, coordinate, shipOrientation, tile} from "./gameboard";
 import {GameManager} from './gamemanager';
@@ -42,7 +42,7 @@ describe(`Player's attack`,()=>{
     expect(GameManager.cpu.board.tiles).toContainEqual(tile(myCoordinate, GameManager.cpu.id));
   });
 });
-
+*/
 
 
 

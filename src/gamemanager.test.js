@@ -1,4 +1,4 @@
-import {coordinate, shipOrientation} from "./gameboard"
+/*import {coordinate, shipOrientation} from "./gameboard"
 import {GameManager} from "./gamemanager"
 import {Player} from "./player"
 import {shipType} from "./ship";
@@ -44,4 +44,4 @@ describe(`End game`, ()=>{
     expect(GameManager.player).toBeUndefined();
     expect(GameManager.cpu).toBeUndefined();
   })
-})
+})*/

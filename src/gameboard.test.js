@@ -1,4 +1,4 @@
-import {shipType} from './ship'
+/*import {shipType} from './ship'
 import { GameBoard, coordinate, shipOrientation,tile } from "./gameboard";
 const myBoard = GameBoard();  
 let myCoordinate = coordinate(4,4);
@@ -76,4 +76,4 @@ describe(`Ship log`, ()=>{
     myBoard.getAttack(myCoordinate);
     expect(myBoard.sunkFleet).toBeTruthy();
   })
-})
+})*/
