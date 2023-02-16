@@ -35,8 +35,7 @@ const gameboardActions = {
         array[i] = coordinate(inputCoordinate.x+i, inputCoordinate.y) ;
     else if(orientation === shipOrientation.VERTICAL)
       for(let i = 0; i<array.length; ++i)
-        array[i] = coordinate(inputCoordinate.x, inputCoordinate.y+1) ;
-    console.dir(array)
+        array[i] = coordinate(inputCoordinate.x, inputCoordinate.y+i) ;
   },
 
   placeShip(shipType, orientation, inputCoordinate){

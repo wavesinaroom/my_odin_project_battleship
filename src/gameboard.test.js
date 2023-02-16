@@ -30,16 +30,11 @@ describe(`Ship placement`,()=>{
   
   test(`Place a horizontal BATTLESHIP on board`, ()=>{
     myBoard.placeShip(shipType.BATTLESHIP, shipOrientation.HORIZONTAL, coordinate(5,5));
-    expect(myBoard.ships[1].coordinates).toContainEqual(coordinate(5,6));
-  });/*
+    expect(myBoard.ships[1].coordinates).toContainEqual(coordinate(6,5));
+  });
   test(`Place a vertical BATTLESHIP on board`, ()=>{
-    myCoordinate = coordinate(1,1);
-    myTile.coordinate = myCoordinate;
-    myTile.id = `${myCoordinate.x},${myCoordinate.y}`;
-    myBoard.placeShips(shipType.BATTLESHIP,shipOrientation.VERTICAL, myCoordinate);
-    expect(myBoard.tiles).toContainEqual(myTile);
-    myTile.coordinate.y = 3;
-    expect(myBoard.tiles).toContainEqual(myTile);*/
+    myBoard.placeShip(shipType.BATTLESHIP, shipOrientation.VERTICAL, coordinate(1,5));
+    expect(myBoard.ships[2].coordinates).toContainEqual(coordinate(1,8));
   });
 /*
   test(`Part of a ship is out of X boundaries`,()=>{
@@ -81,5 +76,5 @@ describe(`Ship log`, ()=>{
     myBoard.getAttack(myCoordinate);
     myBoard.getAttack(myCoordinate);
     expect(myBoard.sunkFleet).toBeTruthy();
-  })
-})*/
+  })*/
+});
