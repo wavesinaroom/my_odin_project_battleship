@@ -17,6 +17,12 @@ const shipOrientation = {
 }
 
 const gameboardActions = {
+  checkExistingCoordinates(inputCoordinate, coordinates){
+      coordinates.forEach(coord=>{
+        if(coord.x === inputCoordinate.x && coord.y === inputCoordinate.y)
+          throw new Error(`There's already a ship in that position`);
+      }); 
+  },
 
   checkBoundaries(inputCoordinate, shipLength){
     if(inputCoordinate.x + shipLength > this.size||inputCoordinate.y + shipLength > this.size)
@@ -36,10 +42,7 @@ const gameboardActions = {
   placeShip(shipType, orientation, inputCoordinate){
 
     this.ships.forEach(ship=>{
-      ship.coordinates.forEach(coord=>{
-        if(coord.x === inputCoordinate.x && coord.y === inputCoordinate.y)
-          throw new Error(`There's already a ship in that position`);
-      }); 
+      this.checkExistingCoordinates(inputCoordinate, ship.coordinates);
     });
     
     const ship = Ship(shipType);
