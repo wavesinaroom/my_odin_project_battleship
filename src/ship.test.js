@@ -2,16 +2,16 @@ import {shipType,Ship} from './ship'
 import {coordinate} from './gameboard'
 
 describe(`Ship`,()=>{
-  const myShip = Ship();
+  const myShip = Ship(shipType.CRUISER);
   test(`Create a ship`, ()=>{
     expect(myShip).not.toBeNull();
     expect(myShip.isSunk).toBeFalsy();
-    expect(myShip.coordinates.length).toEqual(0);
+    expect(myShip.coordinates.length).toEqual(3);
   });
   test(`Add three coordinates to ship`,()=>{
-    myShip.coordinates.push(coordinate(4,4));
-    myShip.coordinates.push(coordinate(5,5));
-    myShip.coordinates.push(coordinate(6,6));
+    myShip.coordinates[0] = coordinate(4,4);
+    myShip.coordinates[1] = coordinate(5,5);
+    myShip.coordinates[2] = coordinate(6,6);
     expect(myShip.coordinates.length).toEqual(3);
     expect(myShip.coordinates).toContainEqual(coordinate(4,4));
   });

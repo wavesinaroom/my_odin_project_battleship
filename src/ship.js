@@ -18,26 +18,26 @@ const shipActions = {
   },
 }
 
-function Ship(shipType){
+function Ship(type){
 
   const ship = Object.create(shipActions); 
-  ship.coordinates = Array(getShipSize(shipType));
+  ship.coordinates = Array(getShipSize(type));
   ship.isSunk = false;
-
 
   return ship;
 }
 
-function getShipSize(shipType){
-  switch(shipType){
+function getShipSize(type){
+  switch(type){
     case shipType.DESTROYER:
-        return 2;
+      return 2;
     case shipType.CRUISER:
-        return 3;
+      return 3;
     case shipType.BATTLESHIP:
-        return 4;
+      return 4;
     case shipType.CARRIER:
-        return 5;
+      return 5;
+    default:
+        throw new Error(`No ship type specified`);
   }
-
 }

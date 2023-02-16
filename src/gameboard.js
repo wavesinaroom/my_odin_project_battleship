@@ -30,17 +30,16 @@ const gameboardActions = {
   },
 
   generateCoordinates(orientation, inputCoordinate, array){
-
     if(orientation === shipOrientation.HORIZONTAL)
       for(let i = 0; i<array.length; ++i)
         array[i] = coordinate(inputCoordinate.x+i, inputCoordinate.y) ;
     else if(orientation === shipOrientation.VERTICAL)
       for(let i = 0; i<array.length; ++i)
         array[i] = coordinate(inputCoordinate.x, inputCoordinate.y+1) ;
+    console.dir(array)
   },
 
   placeShip(shipType, orientation, inputCoordinate){
-
     this.ships.forEach(ship=>{
       this.checkExistingCoordinates(inputCoordinate, ship.coordinates);
     });
