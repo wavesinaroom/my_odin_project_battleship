@@ -17,15 +17,15 @@ describe(`Game board set up`, ()=>{
   test('Game board size has to be 10',()=>{
     expect(myBoard.size).toBe(10);
   });
-});/*
+});
+
 describe(`Ship placement`,()=>{
   test(`Place a DESTROYER ship on board center`, ()=>{
-    myBoard.placeShips(shipType.DESTROYER, shipOrientation.HORIZONTAL, myCoordinate);  
-    expect(myBoard.tiles).toContainEqual(myTile);
-  })
+    expect(myBoard.ships[0].coordinates).toContain(coordinate(4,4));  
+  });
   test(`Ships can't overlap on board`,()=>{
-    expect(()=>{myBoard.placeShips(shipType.BATTLESHIP,shipOrientation.VERTICAL, myCoordinate)}).toThrowError(`There's already an object on that input coordinate`);
-  })
+  });
+  /*
   test(`Place a horizontal BATTLESHIP on board`, ()=>{
     myCoordinate = coordinate(5,5);
     myTile.coordinate = myCoordinate;
@@ -42,9 +42,9 @@ describe(`Ship placement`,()=>{
     myBoard.placeShips(shipType.BATTLESHIP,shipOrientation.VERTICAL, myCoordinate);
     expect(myBoard.tiles).toContainEqual(myTile);
     myTile.coordinate.y = 3;
-    expect(myBoard.tiles).toContainEqual(myTile);
-  })
-
+    expect(myBoard.tiles).toContainEqual(myTile);*/
+  });
+/*
   test(`Part of a ship is out of X boundaries`,()=>{
     myCoordinate = coordinate(7,7);
     expect(()=>{myBoard.placeShips(shipType.BATTLESHIP,shipOrientation.HORIZONTAL, myCoordinate)}).toThrowError(`Part of ship is out of board X boundary`);

@@ -7,7 +7,6 @@ const shipType = {
   DESTROYER: Symbol(`destroyer`),
 }
 
-
 const shipActions = {
   hit(input){
     this.coordinates.splice(this.coordinates.findIndex((coord)=>{
@@ -19,12 +18,26 @@ const shipActions = {
   },
 }
 
-function Ship(){
+function Ship(shipType){
 
   const ship = Object.create(shipActions); 
-  ship.coordinates = [];
+  ship.coordinates = Array(getShipSize(shipType));
   ship.isSunk = false;
+
 
   return ship;
 }
 
+function getShipSize(shipType){
+  switch(shipType){
+    case shipType.DESTROYER:
+        return 2;
+    case shipType.CRUISER:
+        return 3;
+    case shipType.BATTLESHIP:
+        return 4;
+    case shipType.CARRIER:
+        return 5;
+  }
+
+}

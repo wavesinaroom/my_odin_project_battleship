@@ -17,27 +17,38 @@ const shipOrientation = {
 }
 
 const gameboardActions = {
-  placeShips(shipType, orientation, inputCoordinate){
-    /*const ship = Ship(shipType);
-    ship.ID = `${inputCoordinate.x},${inputCoordinate.y}`;
-  
+
+  checkBoundaries(inputCoordinate, shipLength){
+    if(inputCoordinate.x + shipLength > this.size||inputCoordinate.y + shipLength > this.size)
+      throw new Error(`Part of ship is out of board X boundary`);
+  },
+
+  generateCoordinates(orientation, inputCoordinate, array){
+
+    if(orientation === shipOrientation.HORIZONTAL)
+      array.reduce((coordinate(inputCoordinate.x, inputCoordinate.y), coordinate(accumulator.x+1, accumulator.y)));
+    else if(orientation === shipOrientation.VERTICAL)
+      array.reduce((coordinate(inputCoordinate.x, inputCoordinate.y), coordinate(accumulator.x, accumulator.y+1)));
+    
+  },
+
+  placeShip(shipType, orientation, inputCoordinate){
+    this.forEach(ship=>{
+      if(ship      
+    })
+    
+    const ship = Ship(shipType);
+
+    this.checkBoundaries(inputCoordinate, ship.coordinates.length);
+    this.generateCoordinates(orientation, inputCoordinate, ship.coordinates);
+
+    this.ships.push(ship);
+ /* 
     this.tiles.forEach(tile=>{
       if(tile.coordinate.x === inputCoordinate.x && tile.coordinate.y === inputCoordinate.y)
       throw new Error(`There's already an object on that input coordinate`);
     })
 
-    if(orientation === shipOrientation.HORIZONTAL){
-      if(inputCoordinate.x + ship.length > this.size)
-        throw new Error(`Part of ship is out of board X boundary`);
-      for(let i = 0; i<ship.length; ++i)
-        this.tiles.push(tile(coordinate(inputCoordinate.x+i, inputCoordinate.y), `${ship.ID}`));
-    }else if(orientation === shipOrientation.VERTICAL){
-      if(inputCoordinate.y + ship.length > this.size)
-        throw new Error(`Part of ship is out of board Y boundary`);
-      for(let i = 0; i<ship.length; ++i)
-        this.tiles.push(tile(coordinate(inputCoordinate.x, inputCoordinate.y+i), `${ship.ID}`));
-    }else
-      throw new Error(`Undefined ship orientation`);
 
     this.shipsLog.set(`${ship.ID}`,ship);*/
   },
