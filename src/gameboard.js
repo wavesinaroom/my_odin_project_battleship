@@ -1,5 +1,5 @@
 import {  Ship } from "./ship"
-export {GameBoard, coordinate, shipOrientation, tile}
+export {GameBoard, coordinate, shipOrientation}
 
 function coordinate(x,y){
   const boardSize = 10;
@@ -10,10 +10,6 @@ function coordinate(x,y){
   return{x:x, y:y}
 }
 
-function tile(coordinate, id){
-  return{coordinate: coordinate, id: id}
-}
-
 const shipOrientation = {
   HORIZONTAL: Symbol(`horizontal`),
   VERTICAL: Symbol(`vertical`),
@@ -21,7 +17,7 @@ const shipOrientation = {
 
 const gameboardActions = {
   placeShips(shipType, orientation, inputCoordinate){
-    const ship = Ship(shipType);
+    /*const ship = Ship(shipType);
     ship.ID = `${inputCoordinate.x},${inputCoordinate.y}`;
   
     this.tiles.forEach(tile=>{
@@ -42,11 +38,11 @@ const gameboardActions = {
     }else
       throw new Error(`Undefined ship orientation`);
 
-    this.shipsLog.set(`${ship.ID}`,ship);
+    this.shipsLog.set(`${ship.ID}`,ship);*/
   },
 
   getAttack(inputCoordinate){
-    let isShip, ID;
+    /*let isShip, ID;
     this.tiles.forEach(tile=>{
       if(tile.coordinate.y===inputCoordinate.y&&tile.coordinate.x===inputCoordinate.x&&tile.id){
         ID = tile.id;
@@ -61,18 +57,18 @@ const gameboardActions = {
         this.checkSunkFleet();
       }
     }else
-      this.tiles.push(tile(inputCoordinate, undefined));
+      this.tiles.push(tile(inputCoordinate, undefined));*/
   },
 
   removeShip(ID){
-    this.shipsLog.delete(ID);
+    /*this.shipsLog.delete(ID);
     for(let i = 0; i<this.tiles.length; ++i)
       if(this.tiles[i].id===ID)
-        this.tiles.splice(i,1);
+        this.tiles.splice(i,1);*/
   },
 
   checkSunkFleet(){
-    this.shipsLog.size === 0 ? this.sunkFleet=true:this.sunkFleet=false;
+    /*this.shipsLog.size === 0 ? this.sunkFleet=true:this.sunkFleet=false;*/
   }
 
 }
@@ -80,8 +76,8 @@ const gameboardActions = {
 
 function GameBoard (){
   const gameboard = Object.create(gameboardActions);
-  gameboard.shipsLog = new Map();
-  gameboard.tiles= []; 
+  gameboard.ships = [];
+  gameboard.missiles= []; 
   gameboard.size= 10;
   gameboard.sunkFleet = false;
 
