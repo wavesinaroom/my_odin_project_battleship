@@ -1,9 +1,18 @@
-/*import {shipType} from './ship'
+import {shipType} from './ship'
 import { GameBoard, coordinate, shipOrientation,tile } from "./gameboard";
 const myBoard = GameBoard();  
 let myCoordinate = coordinate(4,4);
-let myTile = tile(myCoordinate,`${myCoordinate.x},${myCoordinate.y}`);
 
+describe(`Coordinates`,()=>{
+  test(`Coordinates are inside board boundaries`,()=>{
+    expect(()=>{coordinate(11,1)}).toThrowError(`X coordinate is out of boundaries`);
+    expect(()=>{coordinate(-1,1)}).toThrowError(`X coordinate is out of boundaries`);
+    expect(()=>{coordinate(1,11)}).toThrowError(`Y coordinate is out of boundaries`);
+    expect(()=>{coordinate(1,-1)}).toThrowError(`Y coordinate is out of boundaries`);
+  });
+});
+
+/*
 describe(`Game board set up`, ()=>{
   test('Game board size has to be 10',()=>{
     expect(myBoard.size).toBe(10);

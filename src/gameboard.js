@@ -2,10 +2,11 @@ import {  Ship } from "./ship"
 export {GameBoard, coordinate, shipOrientation}
 
 function coordinate(x,y){
+  //Coordinates are zero based, that's why the boardsize-1 shift
   const boardSize = 10;
-  if(x > boardSize || x < 1)
+  if(x > boardSize-1 || x < 0)
     throw new Error(`X coordinate is out of boundaries`);
-  if(y > boardSize || y < 1)
+  if(y > boardSize-1 || y < 0)
     throw new Error(`Y coordinate is out of boundaries`);
   return{x:x, y:y}
 }
