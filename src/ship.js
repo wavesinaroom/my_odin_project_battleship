@@ -10,7 +10,9 @@ const shipType = {
 
 const shipActions = {
   hit(input){
-    this.coordinates.slice(this.coordinates.findIndex((coord)=>{(coord.x===input.x&&coord.y===input.y)}));
+    this.coordinates.splice(this.coordinates.findIndex((coord)=>{
+      return (coord.x === input.x && coord.y === input.y);
+    }));
 
     if(this.coordinates.length === 0)
       return this.isSunk = true;
