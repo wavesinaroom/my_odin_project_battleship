@@ -29,13 +29,16 @@ const gameboardActions = {
       array.reduce((coordinate(inputCoordinate.x, inputCoordinate.y), coordinate(accumulator.x+1, accumulator.y)));
     else if(orientation === shipOrientation.VERTICAL)
       array.reduce((coordinate(inputCoordinate.x, inputCoordinate.y), coordinate(accumulator.x, accumulator.y+1)));
-    
   },
 
   placeShip(shipType, orientation, inputCoordinate){
+
     this.forEach(ship=>{
-      if(ship      
-    })
+      ship.coordinates.forEach(coord=>{
+        if(coord.x === inputCoordinate.x && coord.y === inputCoordinate.y)
+          throw new Error(`There's already a ship in that position`);
+      }); 
+    });
     
     const ship = Ship(shipType);
 
@@ -43,14 +46,6 @@ const gameboardActions = {
     this.generateCoordinates(orientation, inputCoordinate, ship.coordinates);
 
     this.ships.push(ship);
- /* 
-    this.tiles.forEach(tile=>{
-      if(tile.coordinate.x === inputCoordinate.x && tile.coordinate.y === inputCoordinate.y)
-      throw new Error(`There's already an object on that input coordinate`);
-    })
-
-
-    this.shipsLog.set(`${ship.ID}`,ship);*/
   },
 
   getAttack(inputCoordinate){
