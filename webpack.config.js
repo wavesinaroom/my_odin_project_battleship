@@ -10,7 +10,7 @@ module.exports = {
     player: './src/player.js',
     ship: './src/ship.js',
     eventmanager: './src/eventmanager.js',
-    panelBoard: './src/panelboard.js'
+    gridpanel: './src/gridpanel.js'
   },
   devtool: 'inline-source-map',
   devServer: {
