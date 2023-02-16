@@ -26,7 +26,7 @@ const gameboardActions = {
 
   checkBoundaries(inputCoordinate, shipLength){
     if(inputCoordinate.x + shipLength > this.size||inputCoordinate.y + shipLength > this.size)
-      throw new Error(`Part of ship is out of board X boundary`);
+      throw new Error(`Part of ship is out of board boundaries`);
   },
 
   generateCoordinates(orientation, inputCoordinate, array){

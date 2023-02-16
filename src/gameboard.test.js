@@ -21,9 +21,12 @@ describe(`Game board set up`, ()=>{
 
 describe(`Ship placement`,()=>{
   myBoard.placeShip(shipType.DESTROYER, shipOrientation.HORIZONTAL, coordinate(4,4));
+
   test(`Place a DESTROYER ship on board center`, ()=>{
     expect(myBoard.ships[0].coordinates).toContainEqual(coordinate(4,4));  
+    expect(myBoard.ships.length).toEqual(1);
   });
+
   test(`Ships can't overlap on board`,()=>{
     expect(()=>{myBoard.placeShip(shipType.BATTLESHIP, shipOrientation.VERTICAL, coordinate(4,4))}).toThrowError(`There's already a ship in that position`);
   });
@@ -32,22 +35,22 @@ describe(`Ship placement`,()=>{
     myBoard.placeShip(shipType.BATTLESHIP, shipOrientation.HORIZONTAL, coordinate(5,5));
     expect(myBoard.ships[1].coordinates).toContainEqual(coordinate(6,5));
   });
+
   test(`Place a vertical BATTLESHIP on board`, ()=>{
     myBoard.placeShip(shipType.BATTLESHIP, shipOrientation.VERTICAL, coordinate(1,5));
     expect(myBoard.ships[2].coordinates).toContainEqual(coordinate(1,8));
   });
-/*
-  test(`Part of a ship is out of X boundaries`,()=>{
-    myCoordinate = coordinate(7,7);
-    expect(()=>{myBoard.placeShips(shipType.BATTLESHIP,shipOrientation.HORIZONTAL, myCoordinate)}).toThrowError(`Part of ship is out of board X boundary`);
-    
-  })
-  test(`Part of a ship is out of Y boundaries`,()=>{
-    myCoordinate.x = 6;
-    expect(()=>{myBoard.placeShips(shipType.BATTLESHIP,shipOrientation.VERTICAL, myCoordinate)}).toThrowError(`Part of ship is out of board Y boundary`);
-  })
-})
 
+  test(`Part of a ship is out of X boundaries`,()=>{
+    expect(()=>{myBoard.placeShip(shipType.BATTLESHIP,shipOrientation.HORIZONTAL, coordinate(7,7))}).toThrowError(`Part of ship is out of board boundaries`);
+  });
+
+  test(`Part of a ship is out of Y boundaries`,()=>{
+    expect(()=>{myBoard.placeShip(shipType.BATTLESHIP,shipOrientation.VERTICAL, coordinate(1,9))}).toThrowError(`Part of ship is out of board boundaries`);
+  });
+});
+
+/*
 describe(`Shots`,()=>{
     let myShot=coordinate(8,8);
     
@@ -76,5 +79,5 @@ describe(`Ship log`, ()=>{
     myBoard.getAttack(myCoordinate);
     myBoard.getAttack(myCoordinate);
     expect(myBoard.sunkFleet).toBeTruthy();
-  })*/
-});
+  })
+});*/
