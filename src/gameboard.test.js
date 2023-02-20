@@ -28,7 +28,7 @@ describe(`Ship placement`,()=>{
   });
 
   test(`Ships can't overlap on board`,()=>{
-    expect(()=>{myBoard.placeShip(shipType.BATTLESHIP, shipOrientation.VERTICAL, coordinate(4,4))}).toThrowError(`There's already a ship in that position`);
+    expect(()=>{myBoard.placeShip(shipType.BATTLESHIP, shipOrientation.VERTICAL, coordinate(4,4))}).toThrowError(`There's already a ship on that coordinate`);
   });
   
   test(`Place a horizontal BATTLESHIP on board`, ()=>{
@@ -50,21 +50,14 @@ describe(`Ship placement`,()=>{
   });
 });
 
-/*
-describe(`Shots`,()=>{
-    let myShot=coordinate(8,8);
-    
-  test(`Failed shot logs undefined in GameBoard tiles`, ()=>{
-    myBoard.getAttack(myShot);
-    expect(myBoard.tiles).toContainEqual(tile(myShot, undefined))
-  })
-  test(`Hits a ship`,()=>{
-    myShot = coordinate(4,4);
-    myBoard.getAttack(myShot);
-    expect(myBoard.shipsLog.get(`${myShot.x},${myShot.y}`).hitPoints).toEqual(1);
-  })
-})
+describe(`Get attack from enemy`,()=>{
+  test(`Missile misses Target`,()=>{
+    console.log(myBoard.checkExistingCoordinates(coordinate(8,8),myBoard.ships.coordinates))
+    expect(myBoard.getAttack(coordinate(4,5))).toBeFalsy(); 
+  });
+});
 
+/*
 describe(`Ship log`, ()=>{
   let myCoordinate = coordinate(4,4);
   test(`Ships is sunk`,()=>{
