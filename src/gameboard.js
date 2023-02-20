@@ -16,7 +16,7 @@ const shipOrientation = {
   VERTICAL: Symbol(`vertical`),
 }
 
-const gameboardActions = {
+const gameBoardActions = {
   checkExistingCoordinates(inputCoordinate, coordinates){
       for(let i = 0; i < coordinates.length; ++i)
         if (coordinates[i].x === inputCoordinate.x && coordinates[i].y === inputCoordinate.y)
@@ -52,40 +52,21 @@ const gameboardActions = {
   },
 
   getAttack(inputCoordinate){
-    /*let isShip, ID;
-    this.tiles.forEach(tile=>{
-      if(tile.coordinate.y===inputCoordinate.y&&tile.coordinate.x===inputCoordinate.x&&tile.id){
-        ID = tile.id;
-        return isShip = true;
-      }
-    })
-
-    if(isShip){
-      this.shipsLog.get(ID).hit()
-      if(this.shipsLog.get(ID).isSunk){
-        this.removeShip(ID);
-        this.checkSunkFleet();
-      }
-    }else
-      this.tiles.push(tile(inputCoordinate, undefined));*/
-  },
-
-  removeShip(ID){
-    /*this.shipsLog.delete(ID);
-    for(let i = 0; i<this.tiles.length; ++i)
-      if(this.tiles[i].id===ID)
-        this.tiles.splice(i,1);*/
+    this.ships.forEach(ship=>{
+      if(this.checkExistingCoordinates(inputCoordinate, ship.coordinates))
+        ship.hit(inputCoordinate);
+    });
   },
 
   checkSunkFleet(){
     /*this.shipsLog.size === 0 ? this.sunkFleet=true:this.sunkFleet=false;*/
-  }
+  },
 
 }
 
 
 function GameBoard (){
-  const gameboard = Object.create(gameboardActions);
+  const gameboard = Object.create(gameBoardActions);
   gameboard.ships = [];
   gameboard.missiles= []; 
   gameboard.size= 10;

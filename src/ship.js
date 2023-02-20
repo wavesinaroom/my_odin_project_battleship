@@ -11,7 +11,7 @@ const shipActions = {
   hit(input){
     this.coordinates.splice(this.coordinates.findIndex((coord)=>{
       return (coord.x === input.x && coord.y === input.y);
-    }));
+    }),1);
 
     if(this.coordinates.length === 0)
       return this.isSunk = true;
