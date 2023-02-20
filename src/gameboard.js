@@ -76,7 +76,7 @@ function GameBoard (){
   gameboard.size= 10;
   gameboard.sunkFleet = false;
 
-    return gameboard;
+  return gameboard;
 }
 
 
