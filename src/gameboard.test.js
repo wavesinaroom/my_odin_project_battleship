@@ -1,7 +1,6 @@
 import {shipType} from './ship'
 import { GameBoard, coordinate, shipOrientation,tile } from "./gameboard";
 const myBoard = GameBoard();  
-let myCoordinate = coordinate(4,4);
 
 describe(`Coordinates`,()=>{
   test(`Coordinates are inside board boundaries`,()=>{
@@ -66,20 +65,15 @@ describe(`Get attack from enemy`,()=>{
   });
 });
 
-/*
-describe(`Ship log`, ()=>{
-  let myCoordinate = coordinate(4,4);
-  test(`Ships is sunk`,()=>{
-    myCoordinate = coordinate(4,4);
-    myBoard.getAttack(myCoordinate);
-    expect(myBoard.shipsLog.has(`${myCoordinate.x},${myCoordinate.y}`)).toBeFalsy;
+describe(`Sunk fleet`, ()=>{
+  test(`All ships in log are sunk`, ()=>{
+    for(let i = 0; i<4; ++i){
+      myBoard.getAttack(coordinate(5+i,5));
+      myBoard.getAttack(coordinate(1,5+i));
+    }
+
+    myBoard.ships.forEach(ship=>{
+      expect(ship.isSunk).toBeTruthy();
+    });
   })
-  test(`Sunk fleet`, ()=>{
-    myBoard.shipsLog.clear();
-    myBoard.placeShips(shipType.DESTROYER, shipOrientation.HORIZONTAL, myCoordinate);
-    expect(myBoard.sunkFleet).toBeFalsy();
-    myBoard.getAttack(myCoordinate);
-    myBoard.getAttack(myCoordinate);
-    expect(myBoard.sunkFleet).toBeTruthy();
-  })
-});*/
+});

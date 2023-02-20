@@ -56,10 +56,14 @@ const gameBoardActions = {
       if(this.checkExistingCoordinates(inputCoordinate, ship.coordinates))
         ship.hit(inputCoordinate);
     });
+
+    this.checkSunkFleet();
   },
 
   checkSunkFleet(){
-    /*this.shipsLog.size === 0 ? this.sunkFleet=true:this.sunkFleet=false;*/
+    this.ships.forEach(ship=>{
+      !ship.isSunk?this.sunkFleet:!this.sunkFleet;
+    })
   },
 
 }
