@@ -1,9 +1,9 @@
-/*import { shipType } from "./ship";
+/*
+import { shipType } from "./ship";
 import {Player} from "./player";
 import {GameBoard, coordinate, shipOrientation, tile} from "./gameboard";
 import {GameManager} from './gamemanager';
 import {EventManager} from "./eventmanager";
-
 GameManager.setUpGame(`Pablo`);
 
 describe(`Player set up`, ()=>{
@@ -14,7 +14,6 @@ describe(`Player set up`, ()=>{
     expect(GameManager.player.board).toMatchObject(GameBoard());
   });
 });
-
 describe(`Player's attack`,()=>{
 
   GameManager.cpu = Player();
@@ -42,7 +41,7 @@ describe(`Player's attack`,()=>{
     expect(GameManager.cpu.board.tiles).toContainEqual(tile(myCoordinate, GameManager.cpu.id));
   });
 });
+
+
 */
-
-
 
