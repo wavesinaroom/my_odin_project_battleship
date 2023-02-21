@@ -2,24 +2,22 @@ import {GameManager} from './gamemanager'
 export {EventManager}
 
 const EventManager = {
-  gameManager: GameManager,
-  playerBoard: GameManager.player.board,
-  cpuBoard: GameManager.cpu.board,
+  player: GameManager.player,
+  cpu: GameManager.cpu,
   hit: false,
 
   handleAttack(who, coordinate){
-    if(who!==GameManager.turn)
-      throw new Error(`Invalid turn`);
+    /*if(who!==GameManager.turn)
+      throw new Error(`Invalid turn`);*/
+    who === `CPU` ? this.player.board.getAttack(coordinate):this.cpu.board.getAttack(coordinate);
 
-    who === `CPU` ? player.board.getAttack(coordinate):cpu.board.getAttack(coordinate);
-
-    if(this.playerBoard.missiles[this.playerBoard.missiles.length-1].hit)
-      hit = true;
-    else if(this.cpuBoard.missiles[this.cpuBoard.missiles.length-1].hit)
-      hit = true;
+    if(this.player.board.missiles[this.player.board.missiles.length-1].hit)
+      this.hit = true;
+    else if(this.cpu.board.missiles[this.cpu.board.missiles.length-1].hit)
+      this.hit = true;
     else
-      hit = false;
+      this.hit = false;
 
-    GameManager.changeTurn(who);
+    //GameManager.changeTurn(who);
   }
 }

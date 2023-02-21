@@ -6,7 +6,7 @@ export {Player}
 
 const playerActions = {
   fire(coordinate){
-    EventManager.notifyAttack(this.name, coordinate);
+    EventManager.handleAttack(this.name, coordinate);
   }
 }
 /*
