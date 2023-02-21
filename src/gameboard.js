@@ -1,3 +1,4 @@
+import {EventManager} from "./eventmanager";
 import Missile from "./missile";
 import {  Ship } from "./ship"
 export {GameBoard, coordinate, shipOrientation}
@@ -53,10 +54,11 @@ const gameBoardActions = {
   },
 
   getAttack(inputCoordinate){
-    this.missiles.push(Missile(inputCoordinate))
     this.ships.forEach(ship=>{
-      if(this.checkExistingCoordinates(inputCoordinate, ship.coordinates))
+      if(this.checkExistingCoordinates(inputCoordinate, ship.coordinates)){
         ship.hit(inputCoordinate);
+        EventManager.hit = true;
+      }
     });
 
     this.checkSunkFleet();

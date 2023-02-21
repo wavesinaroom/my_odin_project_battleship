@@ -6,17 +6,15 @@ const EventManager = {
   cpu: GameManager.cpu,
   hit: false,
 
-  handleAttack(who, coordinate){
-    /*if(who!==GameManager.turn)
-      throw new Error(`Invalid turn`);*/
-    who === `CPU` ? this.player.board.getAttack(coordinate):this.cpu.board.getAttack(coordinate);
-    if(this.player.board.missiles[this.player.board.missiles.length-1].hit)
-      this.hit = true;
-    else if(this.cpu.board.missiles[this.cpu.board.missiles.length-1].hit)
-      this.hit = true;
-    else
-      this.hit = false;
+  handleAttack(who, missile){
+    if(who!==GameManager.turn)
+      throw new Error(`Invalid turn`);
 
-    //GameManager.changeTurn(who);
+    who === `CPU` ? this.player.board.getAttack(missile.coordinate):this.cpu.board.getAttack(missile.coordinate);
+
+    if(this.hit)
+      missile.hit = true;
+
+    GameManager.changeTurn(who);
   }
 }

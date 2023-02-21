@@ -2,11 +2,14 @@ import {coordinate, GameBoard, shipOrientation} from './gameboard';
 import { EventManager } from './eventmanager';
 import {GameManager} from './gamemanager';
 import {shipType} from './ship';
+import Missile from './missile';
 export {Player}
 
 const playerActions = {
   fire(coordinate){
-    EventManager.handleAttack(this.name, coordinate);
+    this.board.missiles.push(Missile(coordinate));
+    EventManager.handleAttack(this.name,this.board.missiles[this.board.missiles.length-1]);
+    EventManager.hit = false;
   }
 }
 /*
