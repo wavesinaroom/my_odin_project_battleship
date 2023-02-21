@@ -9,7 +9,7 @@ const playerActions = {
     EventManager.notifyAttack(this.name, coordinate);
   }
 }
-
+/*
 const cpuActions = {
   fire(){
     let attackCoord = this.randomCoordinate();
@@ -53,7 +53,7 @@ const cpuActions = {
     this.board.placeShips(randomShipType,randomShipOrientation, this.randomCoordinate());
   }
 
-}
+}*/
 
 function Player(name){
   let player;
