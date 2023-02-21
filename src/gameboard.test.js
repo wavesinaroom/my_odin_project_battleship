@@ -53,14 +53,11 @@ describe(`Get attack from enemy`,()=>{
   const hitSpy = jest.spyOn(myBoard.ships[0], 'hit');
   test(`Missile hits Target`,()=>{
     myBoard.getAttack(coordinate(4,4));
-    expect(myBoard.missiles.length).toBe(1);
     expect(hitSpy).toBeCalledWith(coordinate(4,4));
   });
   test(`Missile misses Target`,()=>{
     myBoard.getAttack(coordinate(6,4));
-    expect(myBoard.missiles.length).toBe(2);
     expect(hitSpy).not.toBeCalled();
-    expect(myBoard.missiles[myBoard.missiles.length-1].hit).toBeFalsy();
   });
   test(`Ships is sunk`,()=>{
     myBoard.getAttack(coordinate(5,4));

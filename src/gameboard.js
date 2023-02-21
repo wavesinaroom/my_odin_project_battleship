@@ -55,11 +55,8 @@ const gameBoardActions = {
   getAttack(inputCoordinate){
     this.missiles.push(Missile(inputCoordinate))
     this.ships.forEach(ship=>{
-      if(this.checkExistingCoordinates(inputCoordinate, ship.coordinates)){
+      if(this.checkExistingCoordinates(inputCoordinate, ship.coordinates))
         ship.hit(inputCoordinate);
-        this.missiles[this.missiles.length-1].hit = true;
-      }else
-        this.missiles[this.missiles.length-1].hit = false;
     });
 
     this.checkSunkFleet();
