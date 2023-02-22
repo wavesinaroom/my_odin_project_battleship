@@ -28,7 +28,7 @@ describe(`Player set up`,()=>{
 
 describe(`Game over`,()=>{
   const gameOverSpy = jest.spyOn(GameManager, 'gameOver');
-  test.only(`Call gameOver function when either player loses`,()=>{
+  test(`Call gameOver function when either player loses`,()=>{
     GameManager.player.board.placeShip(shipType.DESTROYER, shipOrientation.HORIZONTAL, coordinate(4,4));
     GameManager.cpu.board.placeShip(shipType.DESTROYER,shipOrientation.HORIZONTAL, coordinate(1,1));
     GameManager.player.fire(coordinate(3,3));
