@@ -20,8 +20,8 @@ const GameManager = {
     else
       who === this.cpu.name? this.turn = this.player.name : this.turn = this.cpu.name;
 
-    if(this.turn === `CPU`)
-      this.cpu.fire();
+/*    if(this.turn === `CPU`)
+      this.cpu.fire();*/
   },
 
   gameOver(){

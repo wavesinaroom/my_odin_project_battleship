@@ -7,20 +7,22 @@ export {Player}
 
 const playerActions = {
   fire(coordinate){
+    console.count('playerActions')
+    console.log(coordinate)
     this.board.missiles.push(Missile(coordinate));
     EventManager.handleAttack(this.name,this.board.missiles[this.board.missiles.length-1]);
     EventManager.hit = false;
   }
 }
 const cpuActions = {
+  fire(coordinate){
+    console.count('cpuActions')
+    console.log(coordinate)
+    this.board.missiles.push(Missile(coordinate));
+    EventManager.handleAttack(this.name,this.board.missiles[this.board.missiles.length-1]);
+    EventManager.hit = false;
+  }
 /*
-  fire(){
-    let attackCoord = this.randomCoordinate();
-    if(this.board.tiles.includes(attackCoord))
-      attackCoord = this.randomCoordinate();
-
-    EventManager.notifyAttack(this.name, attackCoord);
-  },
 
   randomCoordinate(){
     const boardSize = GameManager.cpu.board.size;
