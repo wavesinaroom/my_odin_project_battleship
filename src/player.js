@@ -12,8 +12,8 @@ const playerActions = {
     EventManager.hit = false;
   }
 }
-/*
 const cpuActions = {
+/*
   fire(){
     let attackCoord = this.randomCoordinate();
     if(this.board.tiles.includes(attackCoord))
@@ -55,8 +55,8 @@ const cpuActions = {
 
     this.board.placeShips(randomShipType,randomShipOrientation, this.randomCoordinate());
   }
-
-}*/
+*/
+}
 
 function Player(name){
   let player;

@@ -10,4 +10,8 @@ describe(`Player set up`,()=>{
   test(`GameManager can't unnamed players`,()=>{
     expect(()=>{GameManager.setUpGame()}).toThrowError(`Player needs a name`);
   });
+  test(`GameManager sets up CPU automatically`, ()=>{
+    GameManager.setUpGame('Pablo');
+    expect(GameManager.cpu.name).toBe(`CPU`);
+  });
 });
