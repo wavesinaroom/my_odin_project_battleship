@@ -65,9 +65,10 @@ const gameBoardActions = {
   },
 
   checkSunkFleet(){
-    this.ships.forEach(ship=>{
-      !ship.isSunk?this.sunkFleet:!this.sunkFleet;
-    })
+    for(let i = 0; i<this.ships.length; ++i)
+      if(!this.ships[i].isSunk)
+        return this.sunkFleet = false;
+    return this.sunkFleet = true;
   },
 
 }
