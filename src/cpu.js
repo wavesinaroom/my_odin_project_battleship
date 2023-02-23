@@ -1,6 +1,6 @@
-import {coordinate} from './gameboard'
+import {coordinate, shipOrientation} from './gameboard'
 import {shipType} from './ship';
-export {randomCoordinate, randomShipType};
+export {randomCoordinate, randomShipType, randomOrientation};
 
 function randomCoordinate(){
   //Come back here if you feel 9 is never throw out
@@ -21,3 +21,9 @@ function randomShipType(){
   }
 }
 
+function randomOrientation(){
+  if(Math.floor(Math.random()*2))
+    return shipOrientation.HORIZONTAL;
+  return shipOrientation.VERTICAL;
+}
+console.log(randomOrientation())

@@ -1,7 +1,7 @@
-import {randomCoordinate, randomShipType} from './cpu'
+import {randomCoordinate, randomShipType, randomOrientation} from './cpu'
 
 describe(`Random values`,()=>{
-  test(`randomCoordinate`,()=>{
+  test(`Random coordinate`,()=>{
     const aCoordinate = randomCoordinate();
     expect(aCoordinate).not.toBeUndefined();
     expect(aCoordinate.x).toBeGreaterThanOrEqual(0);
@@ -10,7 +10,9 @@ describe(`Random values`,()=>{
     expect(aCoordinate.y).toBeLessThanOrEqual(9);
   });
   test(`Random ship type`,()=>{
-    const aShiptType = randomShipType();
-    expect(aShiptType).not.toBeUndefined();
+    expect(()=>{randomShipType()}).not.toBeUndefined();
+  });
+  test(`Random ship orientation`,()=>{
+    expect(()=>{randomOrientation()}).not.toBeUndefined();
   });
 });
