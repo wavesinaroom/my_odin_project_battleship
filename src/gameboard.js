@@ -40,11 +40,13 @@ const gameBoardActions = {
   },
 
   placeShip(shipType, orientation, inputCoordinate){
-    
     const ship = Ship(shipType);
     this.ships.forEach(navy=>{
-      if(this.checkExistingCoordinates(inputCoordinate, navy.coordinates))
+      if(this.checkExistingCoordinates(inputCoordinate, navy.coordinates)){
+        if(this.name === `CPU`)
+          this.placeRandomShip();
         throw new Error(`There's already a ship on that coordinate`);
+      }
     });
 
     this.checkBoundaries(inputCoordinate, ship.coordinates.length);

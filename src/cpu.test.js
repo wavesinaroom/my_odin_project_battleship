@@ -1,4 +1,9 @@
 import {randomCoordinate, randomShipType, randomOrientation} from './cpu'
+import {GameManager} from './gamemanager';
+import {Ship} from './ship';
+beforeAll(()=>{
+  GameManager.setUpGame(`Pablo`);  
+});
 
 describe(`Random values`,()=>{
   test(`Random coordinate`,()=>{
@@ -15,4 +20,11 @@ describe(`Random values`,()=>{
   test(`Random ship orientation`,()=>{
     expect(()=>{randomOrientation()}).not.toBeUndefined();
   });
+});
+
+describe(`Random ship placement`,()=>{
+  test(`New ship added automatically`,()=>{
+    GameManager.cpu.placeRandomShip();
+    expect(GameManager.cpu.board.ships.length).toEqual(1);
+  }); 
 });

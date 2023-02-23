@@ -2,7 +2,7 @@ import Missile from './missile';
 import { EventManager } from './eventmanager';
 import {coordinate, shipOrientation} from './gameboard'
 import {shipType} from './ship';
-export {randomCoordinate, randomShipType, randomOrientation, fire};
+export {randomCoordinate, randomShipType, randomOrientation, fire, placeRandomShip};
 
 function randomCoordinate(){
   //Come back here if you feel 9 is never throw out
@@ -10,7 +10,6 @@ function randomCoordinate(){
 }
 
 function randomShipType(){
-
   switch(Math.floor((Math.random()*4))){
     case 0:
       return shipType.DESTROYER;
@@ -33,4 +32,8 @@ function fire(coordinate){
   this.board.missiles.push(Missile(coordinate));
   EventManager.handleAttack(this.name,this.board.missiles[this.board.missiles.length-1]);
   EventManager.hit = false;
+}
+
+function placeRandomShip(){
+  this.board.placeShip(randomShipType(),randomOrientation(),randomCoordinate());
 }
