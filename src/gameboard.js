@@ -26,8 +26,9 @@ const gameBoardActions = {
   },
 
   checkBoundaries(inputCoordinate, shipLength){
-    if(inputCoordinate.x + shipLength > this.size||inputCoordinate.y + shipLength > this.size)
+    if(inputCoordinate.x + shipLength > this.size||inputCoordinate.y + shipLength > this.size){
       throw new Error(`Part of ship is out of board boundaries`);
+    }
   },
 
   generateCoordinates(orientation, inputCoordinate, array){
@@ -43,8 +44,6 @@ const gameBoardActions = {
     const ship = Ship(shipType);
     this.ships.forEach(navy=>{
       if(this.checkExistingCoordinates(inputCoordinate, navy.coordinates)){
-        if(this.name === `CPU`)
-          this.placeRandomShip();
         throw new Error(`There's already a ship on that coordinate`);
       }
     });

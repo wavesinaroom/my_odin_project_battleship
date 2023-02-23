@@ -27,3 +27,9 @@ describe(`Random ship placement`,()=>{
     expect(GameManager.cpu.board.ships.length).toEqual(1);
   }); 
 });
+
+describe(`AI tree generation`,()=>{
+  test(`Generate a tree of possible movements from a given coordinate`,()=>{
+
+  })
+});

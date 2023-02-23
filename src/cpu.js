@@ -35,5 +35,9 @@ function fire(coordinate){
 }
 
 function placeRandomShip(){
-  this.board.placeShip(randomShipType(),randomOrientation(),randomCoordinate());
+  try{
+    this.board.placeShip(randomShipType(),randomOrientation(),randomCoordinate());
+  }catch(e){
+    this.board.placeShip(randomShipType(),randomOrientation(),randomCoordinate());
+  }
 }

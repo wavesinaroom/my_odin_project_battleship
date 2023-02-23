@@ -1,5 +1,5 @@
 import {shipType} from './ship'
-import { GameBoard, coordinate, shipOrientation,tile } from "./gameboard";
+import { GameBoard, coordinate, shipOrientation} from "./gameboard";
 const myBoard = GameBoard();  
 
 describe(`Coordinates`,()=>{
@@ -41,11 +41,11 @@ describe(`Ship placement`,()=>{
   });
 
   test(`Part of a ship is out of X boundaries`,()=>{
-    expect(()=>{myBoard.placeShip(shipType.BATTLESHIP,shipOrientation.HORIZONTAL, coordinate(7,7))}).toThrowError(`Part of ship is out of board boundaries`);
+    expect(()=>{myBoard.placeShip(shipType.BATTLESHIP,shipOrientation.HORIZONTAL, coordinate(7,7))}).toThrow(`Part of ship is out of board boundaries`);
   });
 
   test(`Part of a ship is out of Y boundaries`,()=>{
-    expect(()=>{myBoard.placeShip(shipType.BATTLESHIP,shipOrientation.VERTICAL, coordinate(1,9))}).toThrowError(`Part of ship is out of board boundaries`);
+    expect(()=>{myBoard.placeShip(shipType.BATTLESHIP,shipOrientation.VERTICAL, coordinate(1,9))}).toThrow(`Part of ship is out of board boundaries`);
   });
 });
 
