@@ -1,6 +1,5 @@
 import {randomCoordinate, randomShipType, randomOrientation} from './cpu'
 import {GameManager} from './gamemanager';
-import {Ship} from './ship';
 beforeAll(()=>{
   GameManager.setUpGame(`Pablo`);  
 });
