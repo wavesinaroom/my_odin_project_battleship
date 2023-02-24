@@ -33,9 +33,9 @@ describe(`AI tree generation`,()=>{
   test(`Generate a tree of possible movements from a given coordinate`,()=>{
     const myShotsTree = cpu.shotsTree(coordinate(4,4))
     expect(myShotsTree).not.toBeUndefined();
-    expect(myShotsTree.up.y).toEqual(5);
-    expect(myShotsTree.right.x).toEqual(5);
-    expect(myShotsTree.down.y).toEqual(3);
-    expect(myShotsTree.left.x).toEqual(3);
+    expect(myShotsTree.up.coordinate.y).toEqual(5);
+    expect(myShotsTree.right.coordinate.x).toEqual(5);
+    expect(myShotsTree.down.coordinate.y).toEqual(3);
+    expect(myShotsTree.left.coordinate.x).toEqual(3);
   });
 });

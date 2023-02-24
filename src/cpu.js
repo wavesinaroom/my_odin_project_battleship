@@ -6,12 +6,14 @@ export {cpu};
 
 const cpu = {
 
+  shotsTrees : [],
+
   shotsTree (input) {
     return{
-      up : coordinate(input.x, input.y+1),
-      right : coordinate(input.x+1, input.y),
-      down : coordinate(input.x, input.y-1),
-      left : coordinate(input.x-1,input.y)
+      up : Missile(coordinate(input.x, input.y+1)),
+      right : Missile(coordinate(input.x+1, input.y)),
+      down : Missile(coordinate(input.x, input.y-1)),
+      left : Missile(coordinate(input.x-1,input.y))
     }
   },
 
