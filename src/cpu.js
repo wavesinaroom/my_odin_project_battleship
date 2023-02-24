@@ -21,6 +21,23 @@ const cpu = {
     const tree = Object.create(shotsTree);
       tree.centre = input; 
 
+    if(visited){
+      switch(visited.centre){
+        case coordinate(tree.centre.coordinate.x,tree.centre.coordinate.y+1):
+          tree.up = visited;
+          break;
+        case coordinate(tree.centre.coordinate.x+1,tree.centre.coordinate.y):
+          tree.right = visited;
+          break;
+        case coordinate(tree.centre.coordinate.x,tree.centre.coordinate.y-1):
+          tree.down = visited;
+          break;
+        case coordinate(tree.centre.coordinate.x-1,tree.centre.coordinate.y):
+          tree.left = visited;
+          break;
+      }
+    }
+
     return tree;
   },
 
