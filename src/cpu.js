@@ -16,44 +16,27 @@ const cpu = {
 
   shotsTrees : [],
   
-  generateTree(input, visited){
+  generateTree(input){
     //Takes a coordinate as input value
     const tree = Object.create(shotsTree);
       tree.centre = input; 
-
-    if(visited){
-      switch(visited.centre){
-        case coordinate(tree.centre.coordinate.x,tree.centre.coordinate.y+1):
-          tree.up = visited;
-          break;
-        case coordinate(tree.centre.coordinate.x+1,tree.centre.coordinate.y):
-          tree.right = visited;
-          break;
-        case coordinate(tree.centre.coordinate.x,tree.centre.coordinate.y-1):
-          tree.down = visited;
-          break;
-        case coordinate(tree.centre.coordinate.x-1,tree.centre.coordinate.y):
-          tree.left = visited;
-          break;
-      }
-    }
 
     return tree;
   },
 
   expandTree(tree, input){
     switch (input){
-      case coordinate(tree.centre.coordinate.x,tree.centre.coordinate.y+1):
-        tree.up = this.generateTree(coordinate(input.x,input.y+1), tree.centre);
+      case coordinate(tree.centre.x,tree.centre.y+1):
+        tree.up = this.generateTree(coordinate(input.x,input.y+1));
         break;
-      case coordinate(tree.centre.coordinate.x+1,tree.centre.coordinate.y):
-        tree.right = this.generateTree(coordinate(input.x+1,input.y), tree.centre);
+      case coordinate(tree.centre.x+1,tree.centre.y):
+        tree.right = this.generateTree(coordinate(input.x+1,input.y));
         break;
-      case coordinate(tree.centre.coordinate.x,tree.centre.coordinate.y-1):
-        tree.down = this.generateTree(coordinate(input.x,input.y-1), tree.centre);
+      case coordinate(tree.centre.x,tree.centre.y-1):
+        tree.down = this.generateTree(coordinate(input.x,input.y-1));
         break;
-      case coordinate(tree.centre.coordinate.x-1,tree.centre.coordinate.y):
-        tree.left = this.generateTree(coordinate(input.x-1,input.y), tree.centre);
+      case coordinate(tree.centre.x-1,tree.centre.y):
+        tree.left = this.generateTree(coordinate(input.x-1,input.y));
         break;
     }
   },
