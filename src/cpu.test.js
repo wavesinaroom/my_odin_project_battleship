@@ -1,4 +1,4 @@
-import * as CPU  from './cpu'
+import {cpu} from './cpu'
 import {coordinate} from './gameboard';
 import {GameManager} from './gamemanager';
 beforeAll( ()=>{
@@ -7,7 +7,7 @@ beforeAll( ()=>{
 
 describe(`Random values`,()=>{
   test(`Random coordinate`,()=>{
-    const myCoordinate = CPU.randomCoordinate();
+    const myCoordinate = cpu.randomCoordinate();
     expect(myCoordinate).not.toBeUndefined();
     expect(myCoordinate.x).toBeGreaterThanOrEqual(0);
     expect(myCoordinate.x).toBeLessThanOrEqual(9);
@@ -15,10 +15,10 @@ describe(`Random values`,()=>{
     expect(myCoordinate.y).toBeLessThanOrEqual(9);
   });
   test(`Random ship type`,()=>{
-    expect(()=>{CPU.randomShipType()}).not.toBeUndefined();
+    expect(()=>{cpu.randomShipType()}).not.toBeUndefined();
   });
   test(`Random ship orientation`,()=>{
-    expect(()=>{CPU.randomOrientation()}).not.toBeUndefined();
+    expect(()=>{cpu.randomOrientation()}).not.toBeUndefined();
   });
 });
 
@@ -31,7 +31,7 @@ describe(`Random ship placement`,()=>{
 
 describe(`AI tree generation`,()=>{
   test(`Generate a tree of possible movements from a given coordinate`,()=>{
-    const myShotsTree = CPU.shotsTree(coordinate(4,4))
+    const myShotsTree = cpu.shotsTree(coordinate(4,4))
     expect(myShotsTree).not.toBeUndefined();
     expect(myShotsTree.up.y).toEqual(5);
     expect(myShotsTree.right.x).toEqual(5);

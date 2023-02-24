@@ -2,51 +2,54 @@ import Missile from './missile';
 import { EventManager } from './eventmanager';
 import {coordinate, shipOrientation} from './gameboard'
 import {shipType} from './ship';
-export {randomCoordinate, randomShipType, randomOrientation, fire, placeRandomShip, shotsTree};
+export {cpu};
 
-function shotsTree (input) {
-  return{
-    up : coordinate(input.x, input.y+1),
-    right : coordinate(input.x+1, input.y),
-    down : coordinate(input.x, input.y-1),
-    left : coordinate(input.x-1,input.y)
-  }
-}
+const cpu = {
 
-function randomCoordinate(){
-  //Come back here if you feel 9 is never throw out
-  return coordinate(Math.floor(Math.random()*10),Math.floor(Math.random()*10));
-}
+  shotsTree (input) {
+    return{
+      up : coordinate(input.x, input.y+1),
+      right : coordinate(input.x+1, input.y),
+      down : coordinate(input.x, input.y-1),
+      left : coordinate(input.x-1,input.y)
+    }
+  },
 
-function randomShipType(){
-  switch(Math.floor((Math.random()*4))){
-    case 0:
-      return shipType.DESTROYER;
-    case 1:
-      return shipType.CARRIER;
-    case 2:
-      return shipType.CRUISER;
-    case 3:
-      return shipType.BATTLESHIP;
-  }
-}
+  randomCoordinate(){
+    //Come back here if you feel 9 is never throw out
+    return coordinate(Math.floor(Math.random()*10),Math.floor(Math.random()*10));
+  },
 
-function randomOrientation(){
-  if(Math.floor(Math.random()*2))
-    return shipOrientation.HORIZONTAL;
-  return shipOrientation.VERTICAL;
-}
+  randomShipType(){
+    switch(Math.floor((Math.random()*4))){
+      case 0:
+        return shipType.DESTROYER;
+      case 1:
+        return shipType.CARRIER;
+      case 2:
+        return shipType.CRUISER;
+      case 3:
+        return shipType.BATTLESHIP;
+    }
+  },
 
-function fire(coordinate){
-  this.board.missiles.push(Missile(coordinate));
-  EventManager.handleAttack(this.name,this.board.missiles[this.board.missiles.length-1]);
-  EventManager.hit = false;
-}
+  randomOrientation(){
+    if(Math.floor(Math.random()*2))
+      return shipOrientation.HORIZONTAL;
+    return shipOrientation.VERTICAL;
+  },
 
-function placeRandomShip(){
-  try{
-    this.board.placeShip(randomShipType(),randomOrientation(),randomCoordinate());
-  }catch(e){
-    this.board.placeShip(randomShipType(),randomOrientation(),randomCoordinate());
+  fire(coordinate){
+    this.board.missiles.push(Missile(coordinate));
+    EventManager.handleAttack(this.name,this.board.missiles[this.board.missiles.length-1]);
+    EventManager.hit = false;
+  },
+
+  placeRandomShip(){
+    try{
+      this.board.placeShip(this.randomShipType(),this.randomOrientation(),this.randomCoordinate());
+    }catch(e){
+      this.board.placeShip(this.randomShipType(),this.randomOrientation(),this.randomCoordinate());
+    }
   }
 }

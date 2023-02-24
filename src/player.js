@@ -1,7 +1,7 @@
 import { GameBoard } from './gameboard';
 import { EventManager } from './eventmanager';
 import Missile from './missile';
-import * as cpuActions from './cpu'
+import {cpu} from './cpu'
 export {Player}
 
 const playerActions = {
@@ -18,7 +18,7 @@ function Player(name){
     player = Object.create(playerActions);
     player.name = name;
   }else{
-    player = Object.create(cpuActions);
+    player = Object.create(cpu);
     player.name = `CPU`;
   }
   player.board = GameBoard();
