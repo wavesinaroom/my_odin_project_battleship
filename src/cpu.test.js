@@ -31,11 +31,14 @@ describe(`Random ship placement`,()=>{
 
 describe(`AI tree generation`,()=>{
   test(`Generate a tree of possible movements from a given coordinate`,()=>{
-    const myShotsTree = cpu.shotsTree(coordinate(4,4))
+    const myShotsTree = cpu.generateTree(coordinate(4,4))
     expect(myShotsTree).not.toBeUndefined();
     expect(myShotsTree.up.coordinate.y).toEqual(5);
     expect(myShotsTree.right.coordinate.x).toEqual(5);
     expect(myShotsTree.down.coordinate.y).toEqual(3);
     expect(myShotsTree.left.coordinate.x).toEqual(3);
+  });
+  test(`Generate a tree from an existing shotsTree`,()=>{
+
   });
 });

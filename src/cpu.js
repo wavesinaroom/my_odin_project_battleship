@@ -4,17 +4,25 @@ import {coordinate, shipOrientation} from './gameboard'
 import {shipType} from './ship';
 export {cpu};
 
+const shotsTree = {
+  up: undefined,
+  right: undefined,
+  down: undefined,
+  left: undefined
+}
+
 const cpu = {
 
   shotsTrees : [],
+  
+  generateTree(input){
+    const tree = Object.create(shotsTree);
+    tree.up = Missile(coordinate(input.x, input.y+1));
+    tree.right = Missile(coordinate(input.x+1,input.y));
+    tree.down = Missile(coordinate(input.x, input.y-1));
+    tree.left = Missile(coordinate(input.x-1, input.y));
 
-  shotsTree (input) {
-    return{
-      up : Missile(coordinate(input.x, input.y+1)),
-      right : Missile(coordinate(input.x+1, input.y)),
-      down : Missile(coordinate(input.x, input.y-1)),
-      left : Missile(coordinate(input.x-1,input.y))
-    }
+    return tree;
   },
 
   randomCoordinate(){
