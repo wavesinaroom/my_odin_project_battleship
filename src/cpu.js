@@ -5,6 +5,7 @@ import {shipType} from './ship';
 export {cpu};
 
 const shotsTree = {
+  center: undefined,
   up: undefined,
   right: undefined,
   down: undefined,
@@ -16,11 +17,13 @@ const cpu = {
   shotsTrees : [],
   
   generateTree(input){
+    //Takes a missile as input value
     const tree = Object.create(shotsTree);
-    tree.up = Missile(coordinate(input.x, input.y+1));
-    tree.right = Missile(coordinate(input.x+1,input.y));
-    tree.down = Missile(coordinate(input.x, input.y-1));
-    tree.left = Missile(coordinate(input.x-1, input.y));
+      tree.center = input; 
+      tree.up = Missile(coordinate(input.coordinate.x, input.coordinate.y+1));
+      tree.right = Missile(coordinate(input.coordinate.x+1,input.coordinate.y));
+      tree.down = Missile(coordinate(input.coordinate.x, input.coordinate.y-1));
+      tree.left = Missile(coordinate(input.coordinate.x-1, input.coordinate.y));
 
     return tree;
   },
