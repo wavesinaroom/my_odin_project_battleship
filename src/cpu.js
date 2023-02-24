@@ -5,7 +5,7 @@ import {shipType} from './ship';
 export {cpu};
 
 const shotsTree = {
-  center: undefined,
+  centre: undefined,
   up: undefined,
   right: undefined,
   down: undefined,
@@ -16,16 +16,29 @@ const cpu = {
 
   shotsTrees : [],
   
-  generateTree(input){
-    //Takes a missile as input value
+  generateTree(input, visited){
+    //Takes a coordinate as input value
     const tree = Object.create(shotsTree);
-      tree.center = input; 
-      tree.up = Missile(coordinate(input.coordinate.x, input.coordinate.y+1));
-      tree.right = Missile(coordinate(input.coordinate.x+1,input.coordinate.y));
-      tree.down = Missile(coordinate(input.coordinate.x, input.coordinate.y-1));
-      tree.left = Missile(coordinate(input.coordinate.x-1, input.coordinate.y));
+      tree.centre = input; 
 
     return tree;
+  },
+
+  expandTree(tree, input){
+    switch (input){
+      case coordinate(tree.centre.coordinate.x,tree.centre.coordinate.y+1):
+        tree.up = this.generateTree(coordinate(input.x,input.y+1), tree.centre);
+        break;
+      case coordinate(tree.centre.coordinate.x+1,tree.centre.coordinate.y):
+        tree.right = this.generateTree(coordinate(input.x+1,input.y), tree.centre);
+        break;
+      case coordinate(tree.centre.coordinate.x,tree.centre.coordinate.y-1):
+        tree.down = this.generateTree(coordinate(input.x,input.y-1), tree.centre);
+        break;
+      case coordinate(tree.centre.coordinate.x-1,tree.centre.coordinate.y):
+        tree.left = this.generateTree(coordinate(input.x-1,input.y), tree.centre);
+        break;
+    }
   },
 
   randomCoordinate(){
@@ -62,7 +75,7 @@ const cpu = {
     try{
       this.board.placeShip(this.randomShipType(),this.randomOrientation(),this.randomCoordinate());
     }catch(e){
-      this.board.placeShip(this.randomShipType(),this.randomOrientation(),this.randomCoordinate());
+      this.placeRandomShip();
     }
   }
 }
