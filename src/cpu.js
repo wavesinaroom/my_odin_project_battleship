@@ -2,7 +2,16 @@ import Missile from './missile';
 import { EventManager } from './eventmanager';
 import {coordinate, shipOrientation} from './gameboard'
 import {shipType} from './ship';
-export {randomCoordinate, randomShipType, randomOrientation, fire, placeRandomShip};
+export {randomCoordinate, randomShipType, randomOrientation, fire, placeRandomShip, shotsTree};
+
+function shotsTree (input) {
+  return{
+    up : coordinate(input.x, input.y+1),
+    right : coordinate(input.x+1, input.y),
+    down : coordinate(input.x, input.y-1),
+    left : coordinate(input.x-1,input.y)
+  }
+}
 
 function randomCoordinate(){
   //Come back here if you feel 9 is never throw out

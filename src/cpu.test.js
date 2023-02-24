@@ -1,23 +1,24 @@
-import {randomCoordinate, randomShipType, randomOrientation} from './cpu'
+import * as CPU  from './cpu'
+import {coordinate} from './gameboard';
 import {GameManager} from './gamemanager';
-beforeAll(()=>{
+beforeAll( ()=>{
   GameManager.setUpGame(`Pablo`);  
 });
 
 describe(`Random values`,()=>{
   test(`Random coordinate`,()=>{
-    const aCoordinate = randomCoordinate();
-    expect(aCoordinate).not.toBeUndefined();
-    expect(aCoordinate.x).toBeGreaterThanOrEqual(0);
-    expect(aCoordinate.x).toBeLessThanOrEqual(9);
-    expect(aCoordinate.y).toBeGreaterThanOrEqual(0);
-    expect(aCoordinate.y).toBeLessThanOrEqual(9);
+    const myCoordinate = CPU.randomCoordinate();
+    expect(myCoordinate).not.toBeUndefined();
+    expect(myCoordinate.x).toBeGreaterThanOrEqual(0);
+    expect(myCoordinate.x).toBeLessThanOrEqual(9);
+    expect(myCoordinate.y).toBeGreaterThanOrEqual(0);
+    expect(myCoordinate.y).toBeLessThanOrEqual(9);
   });
   test(`Random ship type`,()=>{
-    expect(()=>{randomShipType()}).not.toBeUndefined();
+    expect(()=>{CPU.randomShipType()}).not.toBeUndefined();
   });
   test(`Random ship orientation`,()=>{
-    expect(()=>{randomOrientation()}).not.toBeUndefined();
+    expect(()=>{CPU.randomOrientation()}).not.toBeUndefined();
   });
 });
 
@@ -30,6 +31,11 @@ describe(`Random ship placement`,()=>{
 
 describe(`AI tree generation`,()=>{
   test(`Generate a tree of possible movements from a given coordinate`,()=>{
-
-  })
+    const myShotsTree = CPU.shotsTree(coordinate(4,4))
+    expect(myShotsTree).not.toBeUndefined();
+    expect(myShotsTree.up.y).toEqual(5);
+    expect(myShotsTree.right.x).toEqual(5);
+    expect(myShotsTree.down.y).toEqual(3);
+    expect(myShotsTree.left.x).toEqual(3);
+  });
 });
