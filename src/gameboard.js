@@ -41,6 +41,7 @@ const gameBoardActions = {
   },
 
   placeShip(shipType, orientation, inputCoordinate){
+    console.count(`placeShip`)
     const ship = Ship(shipType);
     this.ships.forEach(navy=>{
       if(this.checkExistingCoordinates(inputCoordinate, navy.coordinates)){
