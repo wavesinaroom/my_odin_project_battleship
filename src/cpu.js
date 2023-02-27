@@ -41,15 +41,16 @@ const cpu = {
     }
   },
 
-  traverseTree(tree){
-    if(tree.up)
-      this.traverseTree(tree.up);
-    else if(tree.right)
-      this.traverseTree(tree.right);
-    else if(tree.down)
-      this.traverseTree(tree.down);
-    else if(tree.left)
-      this.traverseTree(tree.left);
+  //Traverse tree to get coordinates for next shot or to expand itself
+  traverseTree(tree,visited){
+    if(tree.up&&tree.up!=visited)
+      this.traverseTree(tree.up,tree.centre);
+    else if(tree.right&&tree.right!=visited)
+      this.traverseTree(tree.right, tree.centre);
+    else if(tree.down&&tree.down!=visited)
+      this.traverseTree(tree.down, tree.centre);
+    else if(tree.left&&tree.left!=visited)
+      this.traverseTree(tree.left, tree.centre);
     return tree;
   },
 
