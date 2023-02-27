@@ -41,8 +41,20 @@ const cpu = {
     }
   },
 
+  traverseTree(tree){
+    if(tree.up)
+      this.traverseTree(tree.up);
+    else if(tree.right)
+      this.traverseTree(tree.right);
+    else if(tree.down)
+      this.traverseTree(tree.down);
+    else if(tree.left)
+      this.traverseTree(tree.left);
+    return tree;
+  },
+
   randomCoordinate(){
-    //Come back here if you feel 9 is never throw out
+    //Come back here if you feel 9 is never thrown out
     return coordinate(Math.floor(Math.random()*10),Math.floor(Math.random()*10));
   },
 
