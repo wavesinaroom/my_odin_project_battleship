@@ -16,6 +16,15 @@ const cpu = {
 
   shotsTrees : [],
   
+  checkExistingTrees(input){
+    for(let i = 0; i<this.shotsTrees.length; ++i)
+      if(this.traverseTree(this.shotsTrees[i], this.shotsTrees[i].centre) === input)
+        return this.shotsTrees[i];
+  
+    if(this.shotsTrees.length === 0)
+      this.shotsTrees.push(this.generateTree(input));
+  },
+
   generateTree(input){
     //Takes a coordinate as input value
     const tree = Object.create(shotsTree);
@@ -51,7 +60,11 @@ const cpu = {
       this.traverseTree(tree.down, tree.centre);
     else if(tree.left&&tree.left!=visited)
       this.traverseTree(tree.left, tree.centre);
-    return tree;
+    return tree.centre;
+  },
+
+  AIFire(){
+    
   },
 
   randomCoordinate(){
