@@ -4,67 +4,17 @@ import {coordinate, shipOrientation} from './gameboard'
 import {shipType} from './ship';
 export {cpu};
 
-const shotsTree = {
-  centre: undefined,
-  up: undefined,
-  right: undefined,
-  down: undefined,
-  left: undefined
-}
-
 const cpu = {
 
-  shotsTrees : [],
-  
-  checkExistingTrees(input){
-    for(let i = 0; i<this.shotsTrees.length; ++i)
-      if(this.traverseTree(this.shotsTrees[i], this.shotsTrees[i].centre) === input)
-        return this.shotsTrees[i];
-  
-    if(this.shotsTrees.length === 0)
-      this.shotsTrees.push(this.generateTree(input));
-  },
+  hits : [],
 
-  generateTree(input){
-    //Takes a coordinate as input value
-    const tree = Object.create(shotsTree);
-      tree.centre = input; 
-
-    return tree;
-  },
-
-  expandTree(tree, input){
-    switch (input){
-      case coordinate(tree.centre.x,tree.centre.y+1):
-        tree.up = this.generateTree(coordinate(input.x,input.y+1));
-        break;
-      case coordinate(tree.centre.x+1,tree.centre.y):
-        tree.right = this.generateTree(coordinate(input.x+1,input.y));
-        break;
-      case coordinate(tree.centre.x,tree.centre.y-1):
-        tree.down = this.generateTree(coordinate(input.x,input.y-1));
-        break;
-      case coordinate(tree.centre.x-1,tree.centre.y):
-        tree.left = this.generateTree(coordinate(input.x-1,input.y));
-        break;
-    }
-  },
-
-  //Traverse tree to get coordinates for next shot or to expand itself
-  traverseTree(tree,visited){
-    if(tree.up&&tree.up!=visited)
-      this.traverseTree(tree.up,tree.centre);
-    else if(tree.right&&tree.right!=visited)
-      this.traverseTree(tree.right, tree.centre);
-    else if(tree.down&&tree.down!=visited)
-      this.traverseTree(tree.down, tree.centre);
-    else if(tree.left&&tree.left!=visited)
-      this.traverseTree(tree.left, tree.centre);
-    return tree.centre;
-  },
-
-  AIFire(){
-    
+  checkAxis(existing, incoming){
+    if(existing.x-incoming.x === 0 && Math.abs(existing.y-incoming.y<5))
+      return shipOrientation.HORIZONTAL;
+    else if(Math.abs(existing.x-incoming.x)<5 && existing.y-incoming.y === 0)
+      return shipOrientation.VERTICAL;
+    else
+      this.hits.push(incoming);
   },
 
   randomCoordinate(){

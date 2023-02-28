@@ -31,14 +31,17 @@ describe(`Random ship placement`,()=>{
 });
 
 describe(`AI tree generation`,()=>{
-  const myShotsTree = cpu.generateTree(Missile(coordinate(4,4)))
+    const myShotsTree = cpu.generateTree(Missile(coordinate(4,4)))
   test(`Generate a tree of possible movements from a given coordinate`,()=>{
     expect(myShotsTree).not.toBeUndefined();
-    expect(myShotsTree.up.coordinate.y).toEqual(5);
-    expect(myShotsTree.right.coordinate.x).toEqual(5);
-    expect(myShotsTree.down.coordinate.y).toEqual(3);
-    expect(myShotsTree.left.coordinate.x).toEqual(3);
+    expect(myShotsTree.centre.hit).toBeTruthy();
+    expect(myShotsTree.up).toBeUndefined();
+    expect(myShotsTree.right).toBeUndefined();
+    expect(myShotsTree.down).toBeUndefined();
+    expect(myShotsTree.left).toBeUndefined();
   });
   test(`Skip already hit coordinates when expanding tree`,()=>{
+    cpu.expandTree(myShotsTree, Missile(coordinate(4,5)));
+    expect(myShotsTree.up).toMatchObject(cpu.generateTree(Missile(coordinate(4,5))))
   });
 });
