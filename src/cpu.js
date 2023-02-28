@@ -9,7 +9,7 @@ const cpu = {
   hits : [],
 
   checkAxis(existing, incoming){
-    if(existing.x-incoming.x === 0 && Math.abs(existing.y-incoming.y<5))
+    if(existing.x-incoming.x === 0 && Math.abs(existing.y-incoming.y)<5)
       return shipOrientation.VERTICAL;
     else if(Math.abs(existing.x-incoming.x)<5 && existing.y-incoming.y === 0)
       return shipOrientation.HORIZONTAL;

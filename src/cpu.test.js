@@ -1,6 +1,6 @@
 import Missile from './missile';
 import {cpu} from './cpu'
-import {coordinate} from './gameboard';
+import {coordinate, shipOrientation} from './gameboard';
 import {GameManager} from './gamemanager';
 beforeAll( ()=>{
   GameManager.setUpGame(`Pablo`);  
@@ -30,18 +30,17 @@ describe(`Random ship placement`,()=>{
   }); 
 });
 
-describe(`AI tree generation`,()=>{
-    const myShotsTree = cpu.generateTree(Missile(coordinate(4,4)))
-  test(`Generate a tree of possible movements from a given coordinate`,()=>{
-    expect(myShotsTree).not.toBeUndefined();
-    expect(myShotsTree.centre.hit).toBeTruthy();
-    expect(myShotsTree.up).toBeUndefined();
-    expect(myShotsTree.right).toBeUndefined();
-    expect(myShotsTree.down).toBeUndefined();
-    expect(myShotsTree.left).toBeUndefined();
-  });
-  test(`Skip already hit coordinates when expanding tree`,()=>{
-    cpu.expandTree(myShotsTree, Missile(coordinate(4,5)));
-    expect(myShotsTree.up).toMatchObject(cpu.generateTree(Missile(coordinate(4,5))))
+describe(`Moves generation`,()=>{
+  test(`Find out target ship orientation`, ()=>{
+    expect(cpu.checkAxis(coordinate(4,4), coordinate(4,7))).toBe(shipOrientation.VERTICAL);
+    expect(cpu.checkAxis(coordinate(4,4), coordinate(4,2))).toBe(shipOrientation.VERTICAL);
+    expect(cpu.checkAxis(coordinate(4,4), coordinate(7,4))).toBe(shipOrientation.HORIZONTAL);
+    expect(cpu.checkAxis(coordinate(4,4), coordinate(2,4))).toBe(shipOrientation.HORIZONTAL);
+    expect(cpu.checkAxis(coordinate(4,3), coordinate(4,9))).not.toBe(shipOrientation.VERTICAL);
+    expect(cpu.checkAxis(coordinate(4,6), coordinate(0,0))).not.toBe(shipOrientation.VERTICAL);
+    expect(cpu.checkAxis(coordinate(9,5), coordinate(0,5))).not.toBe(shipOrientation.HORIZONTAL);
+    expect(cpu.checkAxis(coordinate(8,7), coordinate(1,7))).not.toBe(shipOrientation.HORIZONTAL);
+    expect(cpu.checkAxis(coordinate(1,1), coordinate(9,9))).not.toBe(shipOrientation.VERTICAL);
+    expect(cpu.checkAxis(coordinate(1,1), coordinate(9,9))).not.toBe(shipOrientation.HORIZONTAL);
   });
 });
