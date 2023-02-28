@@ -50,8 +50,22 @@ const cpu = {
     });
   },
 
+  trimMoves(moves, root, last){
+    let rootIndex, lastIndex;
+    for(let i = 0; i<moves.length; ++i){
+      if(moves[i].coordinate.x === root.coordinate.x || moves[i].coordinate.y === root.coordinate.y )
+        rootIndex = i;
+      else if(moves[i].coordinate.x === last.coordinate.x || moves[i].coordinate.y === last.coordinate.y )
+        lastIndex = i;
+    }
+
+    if(rootIndex<lastIndex)
+      moves.splice(0, 1+(lastIndex-rootIndex));
+    else if(rootIndex>lastIndex)
+      moves.splice(-(1+(rootIndex-lastIndex), (1+(rootIndex-lastIndex))));
+  },
+
   randomCoordinate(){
-    //Come back here if you feel 9 is never thrown out
     return coordinate(Math.floor(Math.random()*10),Math.floor(Math.random()*10));
   },
 
