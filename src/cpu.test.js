@@ -43,4 +43,16 @@ describe(`Moves generation`,()=>{
     expect(cpu.checkAxis(coordinate(1,1), coordinate(9,9))).not.toBe(shipOrientation.VERTICAL);
     expect(cpu.checkAxis(coordinate(1,1), coordinate(9,9))).not.toBe(shipOrientation.HORIZONTAL);
   });
+  test(`Generate axis from coordinate and orientation`,()=>{
+    expect(cpu.generateAxis(coordinate(4,4), shipOrientation.HORIZONTAL)).toContainEqual(Missile(coordinate(6,4)));
+    expect(cpu.generateAxis(coordinate(4,4), shipOrientation.HORIZONTAL)).toContainEqual(Missile(coordinate(2,4)));
+  });
+    expect(cpu.generateAxis(coordinate(1,4), shipOrientation.HORIZONTAL).length).toEqual(5);
+    expect(cpu.generateAxis(coordinate(8,4), shipOrientation.HORIZONTAL).length).toEqual(5);
+    expect(cpu.generateAxis(coordinate(4,4), shipOrientation.VERTICAL)).toContainEqual(Missile(coordinate(4,1)));
+    expect(cpu.generateAxis(coordinate(4,4), shipOrientation.VERTICAL)).toContainEqual(Missile(coordinate(4,7)));
+    expect(cpu.generateAxis(coordinate(4,1), shipOrientation.VERTICAL).length).toEqual(5);
+    expect(cpu.generateAxis(coordinate(4,8), shipOrientation.VERTICAL).length).toEqual(5);
+    expect(()=>{cpu.generateAxis(coordinate(4,4))}).toThrow(`Missing ship orientation`);
+    expect(()=>{cpu.generateAxis()}).toThrow(`Coordinates missing`);
 });

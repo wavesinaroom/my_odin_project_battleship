@@ -17,6 +17,32 @@ const cpu = {
       this.hits.push(incoming);
   },
 
+  generateAxis(coord, orientation){
+    if(!coord)
+      throw new Error(`Coordinates missing`);
+    let moves = [];
+    if(orientation === shipOrientation.HORIZONTAL){
+      for(let i = coord.x-3; i<coord.x+4; ++i){
+        try{
+          moves.push(Missile(coordinate(i, coord.y))); 
+        }catch{
+          continue;
+        } 
+      }
+    }else if(orientation === shipOrientation.VERTICAL){
+      for(let i = coord.y-3; i<coord.y+4; ++i){
+        try{
+          moves.push(Missile(coordinate(coord.x, i))); 
+        }catch{
+          continue;
+        } 
+      }
+    }else{
+      throw new Error(`Missing ship orientation`);
+    }
+    return moves;
+  },
+
   randomCoordinate(){
     //Come back here if you feel 9 is never thrown out
     return coordinate(Math.floor(Math.random()*10),Math.floor(Math.random()*10));
