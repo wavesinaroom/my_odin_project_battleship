@@ -55,4 +55,11 @@ describe(`Moves generation`,()=>{
     expect(cpu.generateAxis(coordinate(4,8), shipOrientation.VERTICAL).length).toEqual(5);
     expect(()=>{cpu.generateAxis(coordinate(4,4))}).toThrow(`Missing ship orientation`);
     expect(()=>{cpu.generateAxis()}).toThrow(`Coordinates missing`);
+  test(`Mark moves from given coordinates`,()=>{
+    const moves = cpu.generateAxis(coordinate(4,4), shipOrientation.HORIZONTAL);
+    cpu.markMoves(moves,coordinate(5,4));
+    cpu.markMoves(moves, coordinate(7,4));
+    expect(moves[4].hit).toBeTruthy();
+    expect(moves[6].hit).toBeTruthy();
+  });
 });

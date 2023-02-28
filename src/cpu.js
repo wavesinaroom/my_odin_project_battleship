@@ -43,6 +43,13 @@ const cpu = {
     return moves;
   },
 
+  markMoves(moves, coord){
+    moves.forEach(move=>{
+      if(move.coordinate.x === coord.x && move.coordinate.y === coord.y)
+        move.hit = true;
+    });
+  },
+
   randomCoordinate(){
     //Come back here if you feel 9 is never thrown out
     return coordinate(Math.floor(Math.random()*10),Math.floor(Math.random()*10));
