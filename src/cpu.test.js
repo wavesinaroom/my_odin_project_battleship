@@ -68,6 +68,43 @@ describe(`Moves generation`,()=>{
       expect(moves[0].coordinate.x).toEqual(1);
       expect(moves[3].coordinate.x).toEqual(4);
     });
-    
+  });
+  describe(`Vertical`,()=>{
+    test(`Main on board centre - Hit on up - No distance between shots`,()=>{
+      const moves = cpu.getMoves(Missile(coordinate(4,4)), Missile(coordinate(4,5))); 
+      expect(moves.length).toEqual(6);
+      expect(moves[2].hit).toBeTruthy();
+      expect(moves[3].hit).toBeTruthy();
+    });
+    test(`Main on board centre - Hit on up - 1 of distance between shots`,()=>{
+      const moves = cpu.getMoves(Missile(coordinate(4,4)), Missile(coordinate(4,6))); 
+      expect(moves.length).toEqual(5);
+      expect(moves[1].hit).toBeTruthy();
+      expect(moves[3].hit).toBeTruthy();
+    });
+    test(`Main on board centre - Hit on up - 2 of distance between shots`,()=>{
+      const moves = cpu.getMoves(Missile(coordinate(4,4)), Missile(coordinate(4,7))); 
+      expect(moves.length).toEqual(4);
+      expect(moves[0].hit).toBeTruthy();
+      expect(moves[3].hit).toBeTruthy();
+    });
+    test(`Main on board centre - Hit on down - no distance between shots`,()=>{
+      const moves = cpu.getMoves(Missile(coordinate(4,4)), Missile(coordinate(4,3)));
+      expect(moves.length).toEqual(6);
+      expect(moves[0].coordinate.y).toEqual(1);
+      expect(moves[5].coordinate.y).toEqual(6);
+    });
+    test(`Main on board centre - Hit on down - 1 of distance between shots`,()=>{
+      const moves = cpu.getMoves(Missile(coordinate(4,4)), Missile(coordinate(4,2)));
+      expect(moves.length).toEqual(5);
+      expect(moves[0].coordinate.y).toEqual(1);
+      expect(moves[4].coordinate.y).toEqual(5);
+    });
+    test(`Main on board centre - Hit on down - 2 of distance between shots`,()=>{
+      const moves = cpu.getMoves(Missile(coordinate(4,4)), Missile(coordinate(4,1)));
+      expect(moves.length).toEqual(4);
+      expect(moves[0].coordinate.y).toEqual(1);
+      expect(moves[3].coordinate.y).toEqual(4);
+    });
   });
 });
