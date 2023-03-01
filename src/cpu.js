@@ -43,7 +43,6 @@ const cpu = {
         end = existing.coordinate.x+(shift-distance); 
       } 
     }
-    console.log(start,end)
 
     for(let i = start; i <= end; ++i){
       try{

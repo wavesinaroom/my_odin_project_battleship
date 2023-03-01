@@ -32,24 +32,42 @@ describe(`Random ship placement`,()=>{
 
 describe(`Moves generation`,()=>{
   describe(`Horizontal`,()=>{
-    test(`Main on board centre - no distance between shots`,()=>{
+    test(`Main on board centre - Hit on right - No distance between shots`,()=>{
       const moves = cpu.getMoves(Missile(coordinate(4,4)), Missile(coordinate(5,4))); 
-      console.log(moves)
       expect(moves.length).toEqual(6);
       expect(moves[2].hit).toBeTruthy();
       expect(moves[3].hit).toBeTruthy();
     });
-    test(`Main on board centre - 1 of distance between shots`,()=>{
+    test(`Main on board centre - Hit on right - 1 of distance between shots`,()=>{
       const moves = cpu.getMoves(Missile(coordinate(4,4)), Missile(coordinate(6,4))); 
       expect(moves.length).toEqual(5);
       expect(moves[1].hit).toBeTruthy();
       expect(moves[3].hit).toBeTruthy();
     });
-    test(`Main on board centre - 2 of distance between shots`,()=>{
+    test(`Main on board centre - Hit on right - 2 of distance between shots`,()=>{
       const moves = cpu.getMoves(Missile(coordinate(4,4)), Missile(coordinate(7,4))); 
       expect(moves.length).toEqual(4);
       expect(moves[0].hit).toBeTruthy();
       expect(moves[3].hit).toBeTruthy();
     });
+    test(`Main on board centre - Hit on left - no distance between shots`,()=>{
+      const moves = cpu.getMoves(Missile(coordinate(4,4)), Missile(coordinate(3,4)));
+      expect(moves.length).toEqual(6);
+      expect(moves[0].coordinate.x).toEqual(1);
+      expect(moves[5].coordinate.x).toEqual(6);
+    });
+    test(`Main on board centre - Hit on left - 1 of distance between shots`,()=>{
+      const moves = cpu.getMoves(Missile(coordinate(4,4)), Missile(coordinate(2,4)));
+      expect(moves.length).toEqual(5);
+      expect(moves[0].coordinate.x).toEqual(1);
+      expect(moves[4].coordinate.x).toEqual(5);
+    });
+    test(`Main on board centre - Hit on left - 2 of distance between shots`,()=>{
+      const moves = cpu.getMoves(Missile(coordinate(4,4)), Missile(coordinate(1,4)));
+      expect(moves.length).toEqual(4);
+      expect(moves[0].coordinate.x).toEqual(1);
+      expect(moves[3].coordinate.x).toEqual(4);
+    });
+    
   });
 });
