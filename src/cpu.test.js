@@ -31,9 +31,25 @@ describe(`Random ship placement`,()=>{
 });
 
 describe(`Moves generation`,()=>{
-  const moves = cpu.getMoves(Missile(coordinate(4,4)), Missile(coordinate(6,4)));
-  test(`Moves coordinates`, ()=>{
-  });
-  test(`Moves hits`,()=>{
+  describe(`Horizontal`,()=>{
+    test(`Main on board centre - no distance between shots`,()=>{
+      const moves = cpu.getMoves(Missile(coordinate(4,4)), Missile(coordinate(5,4))); 
+      console.log(moves)
+      expect(moves.length).toEqual(6);
+      expect(moves[2].hit).toBeTruthy();
+      expect(moves[3].hit).toBeTruthy();
+    });
+    test(`Main on board centre - 1 of distance between shots`,()=>{
+      const moves = cpu.getMoves(Missile(coordinate(4,4)), Missile(coordinate(6,4))); 
+      expect(moves.length).toEqual(5);
+      expect(moves[1].hit).toBeTruthy();
+      expect(moves[3].hit).toBeTruthy();
+    });
+    test(`Main on board centre - 2 of distance between shots`,()=>{
+      const moves = cpu.getMoves(Missile(coordinate(4,4)), Missile(coordinate(7,4))); 
+      expect(moves.length).toEqual(4);
+      expect(moves[0].hit).toBeTruthy();
+      expect(moves[3].hit).toBeTruthy();
+    });
   });
 });

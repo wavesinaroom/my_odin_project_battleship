@@ -9,7 +9,8 @@ const cpu = {
   hits : [],
 
   getMoves(existing, incoming){
-    let orientation, first, distance, start; 
+    const shift = 2;
+    let orientation, distance, start, end, first; 
     let moves = [];
 
     if(existing.coordinate.x-incoming.coordinate.x === 0 && Math.abs(existing.coordinate.y-incoming.coordinate.y)<5)
@@ -20,16 +21,31 @@ const cpu = {
       this.hits.push(incoming);
 
     if(orientation === shipOrientation.VERTICAL){
-      first =  existing.coordinate.y < incoming.coordinate.y ? existing : incoming;
-      distance = Math.abs(existing.coordinate.y-incoming.coordinate.y);
-      start = first.coordinate.y;
+      distance = Math.abs(existing.coordinate.y-incoming.coordinate.y)-1;
+      if(existing.coordinate.y < incoming.coordinate.y){
+        first = existing;
+        start = existing.coordinate.y-(shift-distance);
+        end = incoming.coordinate.y+(shift-distance); 
+      }else{
+        first = incoming;
+        start = incoming.coordinate.y-(shift-distance);
+        end = existing.coordinate.y+(shift-distance); 
+      } 
     }else{
-      first = existing.coordinate.x < incoming.coordinate.x ? existing : incoming;
-      distance = Math.abs((existing.coordinate.x-incoming.coordinate.x));
-      start = first.coordinate.x;
+      distance = Math.abs(existing.coordinate.x-incoming.coordinate.x)-1;
+      if(existing.coordinate.x < incoming.coordinate.x){
+        first = existing;
+        start = existing.coordinate.x-(shift-distance);
+        end = incoming.coordinate.x+(shift-distance); 
+      }else{
+        first = incoming;
+        start = incoming.coordinate.x-(shift-distance);
+        end = existing.coordinate.x+(shift-distance); 
+      } 
     }
+    console.log(start,end)
 
-    for(let i = (start-(3-distance)); i<(6-distance+start); ++i){
+    for(let i = start; i <= end; ++i){
       try{
         if(orientation === shipOrientation.VERTICAL)
           moves.push(Missile(coordinate(first.coordinate.x, i)));
