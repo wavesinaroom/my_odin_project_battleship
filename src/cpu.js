@@ -9,7 +9,8 @@ const cpu = {
   hits : [],
 
   getMoves(existing, incoming){
-    let orientation, first, distance, start, moves;
+    let orientation, first, distance, start; 
+    let moves = [];
 
     if(existing.coordinate.x-incoming.coordinate.x === 0 && Math.abs(existing.coordinate.y-incoming.coordinate.y)<5)
       orientation = shipOrientation.VERTICAL;
@@ -19,30 +20,30 @@ const cpu = {
       this.hits.push(incoming);
 
     if(orientation === shipOrientation.VERTICAL){
-      first =  existing.coordinate.y > incoming.coordinate.y ? existing : incoming;
+      first =  existing.coordinate.y < incoming.coordinate.y ? existing : incoming;
       distance = Math.abs(existing.coordinate.y-incoming.coordinate.y);
-      start = first.y;
+      start = first.coordinate.y;
     }else{
-      first = existing.coordinate.x > incoming.coordinate.x ? existing : incoming;
+      first = existing.coordinate.x < incoming.coordinate.x ? existing : incoming;
       distance = Math.abs((existing.coordinate.x-incoming.coordinate.x));
-      start = first.x;
+      start = first.coordinate.x;
     }
 
-    for(let i = (2-distance+start); i<6-distance+start; ++i){
+    for(let i = (start-(3-distance)); i<(6-distance+start); ++i){
       try{
         if(orientation === shipOrientation.VERTICAL)
-          moves.push(Missile(coordinate(first.coordinate.x, start+i)));
+          moves.push(Missile(coordinate(first.coordinate.x, i)));
         else
-          moves.push(Missile(coordinate(start+i, first.coordinate.y))); 
+          moves.push(Missile(coordinate(i, first.coordinate.y))); 
       }catch{
         continue;
       } 
     }
 
     moves.forEach(move=>{
-      if(move.coordinate.x === existing.x && move.coordinate.y === existing.y)
+      if(move.coordinate.x === existing.coordinate.x && move.coordinate.y === existing.coordinate.y)
         move.hit = true;
-      if(move.coordinate.x === incoming.x && move.coordinate.y === incoming.y)
+      else if(move.coordinate.x === incoming.coordinate.x && move.coordinate.y === incoming.coordinate.y)
         move.hit = true;
     });
     return moves;
