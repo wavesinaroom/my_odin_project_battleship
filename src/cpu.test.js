@@ -107,4 +107,32 @@ describe(`Moves generation`,()=>{
       expect(moves[3].coordinate.y).toEqual(4);
     });
   });
+  describe(`Off board`,()=>{
+    test(`Beyond left border`,()=>{
+      const moves = cpu.getMoves(Missile(coordinate(0,4)), Missile(coordinate(1,4)));
+      expect(moves.length).toEqual(4);
+    });
+    test(`Beyond right border`,()=>{
+      const moves = cpu.getMoves(Missile(coordinate(8,4)), Missile(coordinate(9,4)));
+      expect(moves.length).toEqual(4);
+    });
+    test(`Beyond top border`,()=>{
+      const moves = cpu.getMoves(Missile(coordinate(4,0)), Missile(coordinate(4,1)));
+      expect(moves.length).toEqual(4);
+    });
+    test(`Beyond bottom border`,()=>{
+      const moves = cpu.getMoves(Missile(coordinate(4,8)), Missile(coordinate(4,9)));
+      expect(moves.length).toEqual(4);
+    });
+  });
+  describe(`Incoming hit out of range`,()=>{
+    test(`Beyond horizontal range`,()=>{
+      const moves = cpu.getMoves(Missile(coordinate(4,4)), Missile(coordinate(8,4)));
+      expect(cpu.hits.length).toEqual(1);
+    });
+    test(`Beyond vertical range`,()=>{
+      const moves = cpu.getMoves(Missile(coordinate(4,4)), Missile(coordinate(4,8)));
+      expect(cpu.hits.length).toEqual(2);
+    });
+  })
 });

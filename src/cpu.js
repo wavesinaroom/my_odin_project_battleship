@@ -13,12 +13,15 @@ const cpu = {
     let orientation, distance, start, end, first; 
     let moves = [];
 
-    if(existing.coordinate.x-incoming.coordinate.x === 0 && Math.abs(existing.coordinate.y-incoming.coordinate.y)<5)
+    if(existing.coordinate.x-incoming.coordinate.x === 0 && Math.abs(existing.coordinate.y-incoming.coordinate.y)<4)
       orientation = shipOrientation.VERTICAL;
-    else if(existing.coordinate.y-incoming.coordinate.y === 0 && Math.abs(existing.coordinate.x-incoming.coordinate.x)<5)
+    else if(existing.coordinate.y-incoming.coordinate.y === 0 && Math.abs(existing.coordinate.x-incoming.coordinate.x)<4)
       orientation = shipOrientation.HORIZONTAL;
-    else
+    else{
+      console.log('call')
       this.hits.push(incoming);
+      return;
+    }
 
     if(orientation === shipOrientation.VERTICAL){
       distance = Math.abs(existing.coordinate.y-incoming.coordinate.y)-1;
