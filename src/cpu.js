@@ -28,7 +28,7 @@ const cpu = {
       start = first.x;
     }
 
-    for(let i = (2-distance-start); i<6-distance; ++i){
+    for(let i = (2-distance+start); i<6-distance+start; ++i){
       try{
         if(orientation === shipOrientation.VERTICAL)
           moves.push(Missile(coordinate(first.coordinate.x, start+i)));
