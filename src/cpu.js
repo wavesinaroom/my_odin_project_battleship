@@ -11,9 +11,9 @@ const cpu = {
   getMoves(existing, incoming){
     let orientation, first, distance, start, moves;
 
-    if(existing.x-incoming.x === 0)
+    if(existing.x-incoming.x === 0 && Math.abs(existing.y-incoming.y)<5)
       orientation = shipOrientation.VERTICAL;
-    else if(existing.y-incoming.y === 0)
+    else if(existing.y-incoming.y === 0 && Math.abs(existing.x-incoming.x)<5)
       orientation = shipOrientation.HORIZONTAL;
     else
       this.hits.push(incoming);
