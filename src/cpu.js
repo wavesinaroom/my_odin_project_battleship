@@ -18,7 +18,6 @@ const cpu = {
     else if(existing.coordinate.y-incoming.coordinate.y === 0 && Math.abs(existing.coordinate.x-incoming.coordinate.x)<4)
       orientation = shipOrientation.HORIZONTAL;
     else{
-      console.log('call')
       this.hits.push(incoming);
       return;
     }
