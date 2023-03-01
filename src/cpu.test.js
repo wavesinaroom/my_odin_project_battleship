@@ -61,5 +61,7 @@ describe(`Moves generation`,()=>{
     cpu.markMoves(moves, coordinate(7,4));
     expect(moves[4].hit).toBeTruthy();
     expect(moves[6].hit).toBeTruthy();
+    cpu.trimMoves(moves, moves[4], moves[6]);
+    console.log(moves)
   });
 });

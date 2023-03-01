@@ -8,61 +8,44 @@ const cpu = {
 
   hits : [],
 
-  checkAxis(existing, incoming){
-    if(existing.x-incoming.x === 0 && Math.abs(existing.y-incoming.y)<5)
-      return shipOrientation.VERTICAL;
-    else if(Math.abs(existing.x-incoming.x)<5 && existing.y-incoming.y === 0)
-      return shipOrientation.HORIZONTAL;
+  getMoves(existing, incoming){
+    let orientation, first, distance, start, moves;
+
+    if(existing.x-incoming.x === 0)
+      orientation = shipOrientation.VERTICAL;
+    else if(existing.y-incoming.y === 0)
+      orientation = shipOrientation.HORIZONTAL;
     else
       this.hits.push(incoming);
-  },
 
-  generateAxis(coord, orientation){
-    if(!coord)
-      throw new Error(`Coordinates missing`);
-    let moves = [];
-    if(orientation === shipOrientation.HORIZONTAL){
-      for(let i = coord.x-3; i<coord.x+4; ++i){
-        try{
-          moves.push(Missile(coordinate(i, coord.y))); 
-        }catch{
-          continue;
-        } 
-      }
-    }else if(orientation === shipOrientation.VERTICAL){
-      for(let i = coord.y-3; i<coord.y+4; ++i){
-        try{
-          moves.push(Missile(coordinate(coord.x, i))); 
-        }catch{
-          continue;
-        } 
-      }
+    if(orientation === shipOrientation.VERTICAL){
+      first =  existing.y > incoming.y ? existing : incoming;
+      distance = Math.abs(existing.y-incoming.y);
+      start = first.y;
     }else{
-      throw new Error(`Missing ship orientation`);
+      first = existing.x > incoming.x ? existing : incoming;
+      distance = Math.abs((existing.x-incoming.x));
+      start = first.x;
     }
-    return moves;
-  },
 
-  markMoves(moves, coord){
+    for(let i = (2-distance+start); i<6-distance; ++i){
+      try{
+        if(orientation === shipOrientation.VERTICAL)
+          moves.push(Missile(coordinate(first.coordinate.x, start+i)));
+        else
+          moves.push(Missile(coordinate(start+i, first.coordinate.y))); 
+      }catch{
+        continue;
+      } 
+    }
+
     moves.forEach(move=>{
-      if(move.coordinate.x === coord.x && move.coordinate.y === coord.y)
+      if(move.coordinate.x === existing.x && move.coordinate.y === existing.y)
+        move.hit = true;
+      if(move.coordinate.x === incoming.x && move.coordinate.y === incoming.y)
         move.hit = true;
     });
-  },
-
-  trimMoves(moves, root, last){
-    let rootIndex, lastIndex;
-    for(let i = 0; i<moves.length; ++i){
-      if(moves[i].coordinate.x === root.coordinate.x || moves[i].coordinate.y === root.coordinate.y )
-        rootIndex = i;
-      else if(moves[i].coordinate.x === last.coordinate.x || moves[i].coordinate.y === last.coordinate.y )
-        lastIndex = i;
-    }
-
-    if(rootIndex<lastIndex)
-      moves.splice(0, 1+(lastIndex-rootIndex));
-    else if(rootIndex>lastIndex)
-      moves.splice(-(1+(rootIndex-lastIndex), (1+(rootIndex-lastIndex))));
+    return moves;
   },
 
   randomCoordinate(){
