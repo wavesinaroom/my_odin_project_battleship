@@ -11,20 +11,20 @@ const cpu = {
   getMoves(existing, incoming){
     let orientation, first, distance, start, moves;
 
-    if(existing.x-incoming.x === 0 && Math.abs(existing.y-incoming.y)<5)
+    if(existing.coordinate.x-incoming.coordinate.x === 0 && Math.abs(existing.coordinate.y-incoming.coordinate.y)<5)
       orientation = shipOrientation.VERTICAL;
-    else if(existing.y-incoming.y === 0 && Math.abs(existing.x-incoming.x)<5)
+    else if(existing.coordinate.y-incoming.coordinate.y === 0 && Math.abs(existing.coordinate.x-incoming.coordinate.x)<5)
       orientation = shipOrientation.HORIZONTAL;
     else
       this.hits.push(incoming);
 
     if(orientation === shipOrientation.VERTICAL){
-      first =  existing.y > incoming.y ? existing : incoming;
-      distance = Math.abs(existing.y-incoming.y);
+      first =  existing.coordinate.y > incoming.coordinate.y ? existing : incoming;
+      distance = Math.abs(existing.coordinate.y-incoming.coordinate.y);
       start = first.y;
     }else{
-      first = existing.x > incoming.x ? existing : incoming;
-      distance = Math.abs((existing.x-incoming.x));
+      first = existing.coordinate.x > incoming.coordinate.x ? existing : incoming;
+      distance = Math.abs((existing.coordinate.x-incoming.coordinate.x));
       start = first.x;
     }
 
