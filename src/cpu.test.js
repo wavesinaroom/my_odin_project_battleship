@@ -139,9 +139,13 @@ describe(`Moves generation`,()=>{
 });
 
 describe(`Moves update`,()=>{
-  test(`CPU Hits not empty hence it doesn't grow`,()=>{
-  //GameManager.cpu.hits[0] = GameManager.cpu.generateMoves(GameManager.cpu.hits[0], Missile(coordinate(6,4)))
-    console.log(GameManager.cpu.hits)
+  test(`Empty CPU hits, grows on updateMoves method call`,()=>{
     expect(GameManager.cpu.updateMoves(Missile(coordinate(4,4)))).toBeFalsy();
+    expect(GameManager.cpu.hits.length).toEqual(1);
+  });
+  test(`Updates existing move and return true`,()=>{
+    GameManager.cpu.hits[0] = GameManager.cpu.generateMoves(GameManager.cpu.hits[0], Missile(coordinate(2,4)));
+    console.log(GameManager.cpu.updateMoves(Missile(coordinate(3,4))))
+    expect(GameManager.cpu.updateMoves(Missile(coordinate(3,4)))).toBeTruthy();
   });
 });

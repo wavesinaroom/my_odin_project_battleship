@@ -9,19 +9,20 @@ const cpu = {
   hits : [],
 
   updateMoves(input){
-    if(this.hits.length === 0)
+    let isUpdated = false;
+    if(this.hits.length === 0){
       this.hits.push(input);
+      return isUpdated;
+    }
     this.hits.forEach(moves=>{
       for(let i = 0; i<moves.length; ++i){
-        console.log(moves)
         if(input.coordinate.x === moves[i].coordinate.x && input.coordinate.y === moves[i].coordinate.y) {
-          console.log(moves[i], input)
           moves[i].hit = true;
+          isUpdated = true;
         }
-        return true;
       }
     });
-    return false;
+    return isUpdated;
   },
 
   generateMoves(existing, incoming){
