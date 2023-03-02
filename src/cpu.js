@@ -9,10 +9,15 @@ const cpu = {
   hits : [],
 
   updateMoves(input){
-    hits.forEach(moves=>{
+    if(this.hits.length === 0)
+      this.hits.push(input);
+    this.hits.forEach(moves=>{
       for(let i = 0; i<moves.length; ++i){
-        if(input.coordinate.x === moves[i].coordinate.x && input.coordinate.y === moves[i].coordinate.y) 
+        console.log(moves)
+        if(input.coordinate.x === moves[i].coordinate.x && input.coordinate.y === moves[i].coordinate.y) {
+          console.log(moves[i], input)
           moves[i].hit = true;
+        }
         return true;
       }
     });
@@ -29,7 +34,7 @@ const cpu = {
     else if(existing.coordinate.y-incoming.coordinate.y === 0 && Math.abs(existing.coordinate.x-incoming.coordinate.x)<4)
       orientation = shipOrientation.HORIZONTAL;
     else{
-      this.hits.push(incoming);
+      this.hits.push([incoming]);
       return;
     }
 
