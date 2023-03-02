@@ -8,13 +8,11 @@ const cpu = {
 
   hits : [],
   
-  fireRandomShot(previous){
-    if(this.updateMoves(previous)){
-      try{
-        this.getRandomShot();
-      }catch{
-
-      }
+  fireRandomShot(latestShot){
+    if(this.hits.length === 0){
+      this.hits.push([latestShot])
+      this.fire(coordinate(Math.floor(Math.random()*10),Math.floor(Math.random()*10))); 
+      return;
     }
   },
 
