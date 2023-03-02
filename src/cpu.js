@@ -7,15 +7,17 @@ export {cpu};
 const cpu = {
 
   hits : [],
-
-  getRandomShot(){
-    let randomSet = Math.floor(Math.random()*this.hits.length);
-    let randomMove = Math.floor(Math.random()*this.hits[randomSet].length);
-    if(!this.hits[randomSet][randomMove].hit)
-      return this.hits[randomSet][randomMove].coordinate;
-    throw new Error(`Coordinate has already been used`);
-  },
   
+  fireRandomShot(previous){
+    if(this.updateMoves(previous)){
+      try{
+        this.getRandomShot();
+      }catch{
+
+      }
+    }
+  },
+
   updateMoves(input){
     let isUpdated = false;
     if(this.hits.length === 0){
@@ -31,6 +33,14 @@ const cpu = {
       }
     });
     return isUpdated;
+  },
+
+  getRandomShot(){
+    let randomSet = Math.floor(Math.random()*this.hits.length);
+    let randomMove = Math.floor(Math.random()*this.hits[randomSet].length);
+    if(!this.hits[randomSet][randomMove].hit)
+      return this.hits[randomSet][randomMove].coordinate;
+    throw new Error(`Coordinate has already been used`);
   },
 
   generateMoves(existing, incoming){

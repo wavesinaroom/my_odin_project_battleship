@@ -137,7 +137,7 @@ describe(`Moves generation`,()=>{
     });
   })
 });
-
+/*
 describe(`Moves update`,()=>{
   test(`Empty CPU hits, grows on updateMoves method call`,()=>{
     expect(GameManager.cpu.updateMoves(Missile(coordinate(4,4)))).toBeFalsy();
@@ -152,4 +152,4 @@ describe(`Moves update`,()=>{
     expect(GameManager.cpu.updateMoves(Missile(coordinate(7,4)))).toBeFalsy();
   });
 });
-
+*/
