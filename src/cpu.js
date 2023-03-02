@@ -13,9 +13,10 @@ const cpu = {
       for(let i = 0; i<moves.length; ++i){
         if(input.coordinate.x === moves[i].coordinate.x && input.coordinate.y === moves[i].coordinate.y) 
           moves[i].hit = true;
-        return
+        return true;
       }
     });
+    return false;
   },
 
   generateMoves(existing, incoming){
