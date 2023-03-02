@@ -8,7 +8,16 @@ const cpu = {
 
   hits : [],
 
-  getMoves(existing, incoming){
+  updateMoves(input){
+    hits.forEach(hit=>{
+      hit.moves.forEach(move=>{
+        if(input.coordinate.x === move.coordinate.x && input.coordinate.y === move.coordinate.y) 
+          move.hit = true;
+      });
+    });
+  },
+
+  generateMoves(existing, incoming){
     const shift = 2;
     let orientation, distance, start, end, first; 
     let moves = [];
@@ -89,17 +98,17 @@ const cpu = {
     return shipOrientation.VERTICAL;
   },
 
-  fire(coordinate){
-    this.board.missiles.push(Missile(coordinate));
-    EventManager.handleAttack(this.name,this.board.missiles[this.board.missiles.length-1]);
-    EventManager.hit = false;
-  },
-
   placeRandomShip(){
     try{
       this.board.placeShip(this.randomShipType(),this.randomOrientation(),this.randomCoordinate());
     }catch(e){
       this.placeRandomShip();
     }
+  },
+
+  fire(coordinate){
+    this.board.missiles.push(Missile(coordinate));
+    EventManager.handleAttack(this.name,this.board.missiles[this.board.missiles.length-1]);
+    EventManager.hit = false;
   }
 }
