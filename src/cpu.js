@@ -8,6 +8,13 @@ const cpu = {
 
   hits : [],
 
+  getRandomShot(){
+    let randomSet = Math.floor(Math.random()*this.hits.length);
+    let randomMove = Math.floor(Math.random()*this.hits[randomSet].length);
+    if(!this.hits[randomSet][randomMove].hit)
+      return this.hits[randomSet][randomMove].coordinate;
+  },
+  
   updateMoves(input){
     let isUpdated = false;
     if(this.hits.length === 0){
