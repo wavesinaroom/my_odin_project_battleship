@@ -145,7 +145,9 @@ describe(`Moves update`,()=>{
   });
   test(`Updates existing move and return true`,()=>{
     GameManager.cpu.hits[0] = GameManager.cpu.generateMoves(GameManager.cpu.hits[0], Missile(coordinate(2,4)));
-    console.log(GameManager.cpu.updateMoves(Missile(coordinate(3,4))))
     expect(GameManager.cpu.updateMoves(Missile(coordinate(3,4)))).toBeTruthy();
+  });
+  test(`Does not update inexisting moves`,()=>{
+    expect(GameManager.cpu.updateMoves(Missile(coordinate(7,4)))).toBeFalsy();
   });
 });
