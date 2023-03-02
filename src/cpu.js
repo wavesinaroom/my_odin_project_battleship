@@ -13,6 +13,7 @@ const cpu = {
     let randomMove = Math.floor(Math.random()*this.hits[randomSet].length);
     if(!this.hits[randomSet][randomMove].hit)
       return this.hits[randomSet][randomMove].coordinate;
+    throw new Error(`Coordinate has already been used`);
   },
   
   updateMoves(input){

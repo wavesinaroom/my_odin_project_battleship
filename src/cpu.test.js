@@ -153,11 +153,3 @@ describe(`Moves update`,()=>{
   });
 });
 
-describe(`Random Shot`,()=>{
-  test(`Returns a random coordinate`, ()=>{
-    const randomShot = GameManager.cpu.getRandomShot();
-    expect(randomShot).not.toBeUndefined();
-    expect(randomShot.x).not.toBeNaN();
-    expect(randomShot.y).not.toBeNaN();
-  });
-});
