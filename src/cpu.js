@@ -9,11 +9,12 @@ const cpu = {
   hits : [],
 
   updateMoves(input){
-    hits.forEach(hit=>{
-      hit.moves.forEach(move=>{
-        if(input.coordinate.x === move.coordinate.x && input.coordinate.y === move.coordinate.y) 
-          move.hit = true;
-      });
+    hits.forEach(moves=>{
+      for(let i = 0; i<moves.length; ++i){
+        if(input.coordinate.x === moves[i].coordinate.x && input.coordinate.y === moves[i].coordinate.y) 
+          moves[i].hit = true;
+        return
+      }
     });
   },
 
