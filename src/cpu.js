@@ -7,21 +7,9 @@ export {cpu};
 const cpu = {
 
   hits : [],
-  
-  fireRandomShot(latestShot){
-    if(this.hits.length === 0){
-      this.hits.push([latestShot])
-      this.fire(coordinate(Math.floor(Math.random()*10),Math.floor(Math.random()*10))); 
-      return;
-    }
-  },
 
   updateMoves(input){
     let isUpdated = false;
-    if(this.hits.length === 0){
-      this.hits.push(input);
-      return isUpdated;
-    }
     this.hits.forEach(moves=>{
       for(let i = 0; i<moves.length; ++i){
         if(input.coordinate.x === moves[i].coordinate.x && input.coordinate.y === moves[i].coordinate.y) {
@@ -121,18 +109,4 @@ const cpu = {
       return shipOrientation.HORIZONTAL;
     return shipOrientation.VERTICAL;
   },
-
-  placeRandomShip(){
-    try{
-      this.board.placeShip(this.randomShipType(),this.randomOrientation(),this.randomCoordinate());
-    }catch(e){
-      this.placeRandomShip();
-    }
-  },
-
-  fire(coordinate){
-    this.board.missiles.push(Missile(coordinate));
-    EventManager.handleAttack(this.name,this.board.missiles[this.board.missiles.length-1]);
-    EventManager.hit = false;
-  }
 }

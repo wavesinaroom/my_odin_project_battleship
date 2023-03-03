@@ -1,4 +1,4 @@
-import { GameBoard } from './gameboard';
+import { coordinate, GameBoard } from './gameboard';
 import { EventManager } from './eventmanager';
 import Missile from './missile';
 import {cpu} from './cpu'
@@ -18,8 +18,23 @@ function Player(name){
     player = Object.create(playerActions);
     player.name = name;
   }else{
-    player = Object.create(cpu);
+    player = Object.create(playerActions);
     player.name = `CPU`;
+    player.ai  = Object.create(cpu);
+    player.fireRandomShot = function(latestShot){
+      if(this.ai.hits.length){
+        this.ai.hits.push([latestShot]);
+        this.fire(coordinate(Math.floor(Math.random()*10)),Math.floor(Math.random()*10));
+        return;
+      }
+    }
+    player.placeRandomShip = function(){
+      try{
+        this.board.placeShip(this.ai.randomShipType(),this.ai.randomOrientation(), this.ai.randomCoordinate());
+      }catch(e){
+        this.placeRandomShip();
+      }
+    }
   }
   player.board = GameBoard();
   return player;
