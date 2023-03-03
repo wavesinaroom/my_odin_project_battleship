@@ -9,13 +9,16 @@ const cpu = {
 
   getRandomShot(input){
     if(this.hits.length===0){
-      this.hits.push([latestShot]);
+      this.hits.push([input]);
       return;
     }
 
     this.hits.forEach(hit=>{
-      if(!this.updateMoves(hit)&&hit.length === 1) 
-        hit = this.generateMoves(hit, input);
+      if(!this.updateMoves(input)) 
+        if(hit.length ===1)
+          hit = this.generateMoves(hit, input);
+        else
+          this.hits.push([input])
     });
 
     try{

@@ -1,12 +1,9 @@
 import Missile from './missile';
 import {coordinate} from './gameboard';
 import {GameManager} from './gamemanager';
-import {cpu} from './cpu';
-import {Player} from './player';
 beforeAll( ()=>{
   GameManager.setUpGame(`Pablo`);  
   GameManager.cpu.hits = [];
-  GameManager.turn = `CPU`;
 });
 
 describe(`Random values`,()=>{
@@ -143,14 +140,24 @@ describe(`Moves generation`,()=>{
   })
 });
 
-describe(`Fire Random Shot`,()=>{
-  const fireRandom = jest.fn(   
-    :
-  );
-  test(`First positive, empty hits`,()=>{
-    GameManager.cpu.fireRandomShot(Missile(coordinate(4,4)));
+describe(`Get Random Shot`,()=>{
+  const updateSpy = jest.spyOn(cpu, 'updateMoves');
+  const genereateSpy = jest.spyOn(cpu, 'generateMoves');
+  test(`Push first positive missile into hits array`,()=>{
     expect(GameManager.cpu.ai.hits.length).toEqual(1);
-    expect(GameManager.cpu.ai.hits[0][0].coordinate.x).toEqual(4);
-    expect(GameManager.cpu.ai.hits[0][0].coordinate.y).toEqual(4);
+  });
+  test(`Second shot within range generates possible moves`,()=>{
+    expect(updateSpy).toBeCalled();
+    expect(genereateSpy).toBeCalled();
+    expect(GameManager.cpu.ai.hits[0].length).toBe(2);
+    expect(GameManager.cpu.ai.hits[0][1]).not.toBeUndefined();
+    expect(GameManager.cpu.ait.hits[0][1]).toMatchObject(coordinate(5,4));
+  });
+  test(`Third shot out of range pushes a new hit element`,()=>{
+    expect(updateSpy).toBeCalled();
+    expect(GameManager.cpu.ai.hits[0].length).toBe(3);
+  });
+  test(`Method ouput`,()=>{
+    expect(GameManager.cpu.ai.getRandomShot(`Put input here`)).not.toBeUndefined();
   });
 });
