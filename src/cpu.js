@@ -1,5 +1,4 @@
 import Missile from './missile';
-import { EventManager } from './eventmanager';
 import {coordinate, shipOrientation} from './gameboard'
 import {shipType} from './ship';
 export {cpu};
@@ -8,20 +7,33 @@ const cpu = {
 
   hits : [],
 
+  getRandomShot(input){
+    if(this.hits.length===0){
+      this.hits.push([latestShot]);
+      this.fire(coordinate(Math.floor(Math.random()*10)),Math.floor(Math.random()*10));
+      return;
+    }
+
+    this.hits.forEach(hit=>{
+      if(!this.updateMoves(hit)&&hit.length === 1) 
+        this.generateMoves(hit, input);
+    });
+
+    return this.getRandomShot();
+  },
+
   updateMoves(input){
     let isUpdated = false;
-    this.hits.forEach(moves=>{
-      for(let i = 0; i<moves.length; ++i){
-        if(input.coordinate.x === moves[i].coordinate.x && input.coordinate.y === moves[i].coordinate.y) {
-          moves[i].hit = true;
-          isUpdated = true;
-        }
+    for(let i = 0; i<moves.length; ++i){
+      if(input.coordinate.x === moves[i].coordinate.x && input.coordinate.y === moves[i].coordinate.y) {
+        moves[i].hit = true;
+        isUpdated = true;
       }
-    });
+    }
     return isUpdated;
   },
 
-  getRandomShot(){
+  getRandomCoordinate(){
     let randomSet = Math.floor(Math.random()*this.hits.length);
     let randomMove = Math.floor(Math.random()*this.hits[randomSet].length);
     if(!this.hits[randomSet][randomMove].hit)

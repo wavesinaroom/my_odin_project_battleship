@@ -144,9 +144,11 @@ describe(`Moves generation`,()=>{
 });
 
 describe(`Fire Random Shot`,()=>{
+  const fireRandom = jest.fn(   
+    :
+  );
   test(`First positive, empty hits`,()=>{
     GameManager.cpu.fireRandomShot(Missile(coordinate(4,4)));
-  console.log(GameManager.cpu.ai.hits.length)
     expect(GameManager.cpu.ai.hits.length).toEqual(1);
     expect(GameManager.cpu.ai.hits[0][0].coordinate.x).toEqual(4);
     expect(GameManager.cpu.ai.hits[0][0].coordinate.y).toEqual(4);

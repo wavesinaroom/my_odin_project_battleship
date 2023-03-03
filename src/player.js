@@ -21,13 +21,6 @@ function Player(name){
     player = Object.create(playerActions);
     player.name = `CPU`;
     player.ai  = Object.create(cpu);
-    player.fireRandomShot = function(latestShot){
-      if(this.ai.hits.length===0){
-        this.ai.hits.push([latestShot]);
-        //this.fire(coordinate(Math.floor(Math.random()*10)),Math.floor(Math.random()*10));
-        return;
-      }
-    }
     player.placeRandomShip = function(){
       try{
         this.board.placeShip(this.ai.randomShipType(),this.ai.randomOrientation(), this.ai.randomCoordinate());
