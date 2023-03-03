@@ -130,13 +130,13 @@ describe(`Moves generation`,()=>{
   describe(`Incoming hit out of range`,()=>{
     test(`Beyond horizontal range`,()=>{
       GameManager.cpu.ai.generateMoves(Missile(coordinate(4,4)), Missile(coordinate(8,4)));
-      expect(GameManager.cpu.hits.length).toEqual(1);
-      GameManager.cpu.hits = [];
+      expect(GameManager.cpu.ai.hits.length).toEqual(1);
+      GameManager.cpu.ai.hits = [];
     });
     test(`Beyond vertical range`,()=>{
       GameManager.cpu.ai.generateMoves(Missile(coordinate(4,4)), Missile(coordinate(4,8)));
-      expect(GameManager.cpu.hits.length).toEqual(1);
-      GameManager.cpu.hits = [];
+      expect(GameManager.cpu.ai.hits.length).toEqual(1);
+      GameManager.cpu.ai.hits = [];
     });
   })
 });
