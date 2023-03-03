@@ -1,6 +1,7 @@
 import Missile from './missile';
 import {coordinate} from './gameboard';
 import {GameManager} from './gamemanager';
+import {cpu} from './cpu';
 beforeAll( ()=>{
   GameManager.setUpGame(`Pablo`);  
   GameManager.cpu.hits = [];
@@ -141,23 +142,31 @@ describe(`Moves generation`,()=>{
 });
 
 describe(`Get Random Shot`,()=>{
+  GameManager.setUpGame('Pablo')
   const updateSpy = jest.spyOn(cpu, 'updateMoves');
-  const genereateSpy = jest.spyOn(cpu, 'generateMoves');
+  const generateSpy = jest.spyOn(cpu, 'generateMoves');
   test(`Push first positive missile into hits array`,()=>{
+    GameManager.cpu.ai.getRandomShot(Missile(coordinate(4,4)));
     expect(GameManager.cpu.ai.hits.length).toEqual(1);
   });
   test(`Second shot within range generates possible moves`,()=>{
+    GameManager.cpu.ai.getRandomShot(Missile(coordinate(4,4)));
+    GameManager.cpu.ai.getRandomShot(Missile(coordinate(5,4)));
     expect(updateSpy).toBeCalled();
-    expect(genereateSpy).toBeCalled();
-    expect(GameManager.cpu.ai.hits[0].length).toBe(2);
+    expect(generateSpy).toBeCalled();
+    expect(GameManager.cpu.ai.hits[0].length).toBe(6);
     expect(GameManager.cpu.ai.hits[0][1]).not.toBeUndefined();
-    expect(GameManager.cpu.ait.hits[0][1]).toMatchObject(coordinate(5,4));
+    expect(GameManager.cpu.ai.hits[0][3].coordinate.x).toEqual(5);
+    expect(GameManager.cpu.ai.hits[0][3].coordinate.y).toEqual(4);
   });
   test(`Third shot out of range pushes a new hit element`,()=>{
+    GameManager.cpu.ai.getRandomShot(Missile(coordinate(4,4)));
+    GameManager.cpu.ai.getRandomShot(Missile(coordinate(7,7)));
     expect(updateSpy).toBeCalled();
-    expect(GameManager.cpu.ai.hits[0].length).toBe(3);
+    expect(GameManager.cpu.ai.hits.length).toBe(2);
   });
   test(`Method ouput`,()=>{
-    expect(GameManager.cpu.ai.getRandomShot(`Put input here`)).not.toBeUndefined();
+    GameManager.cpu.ai.getRandomShot(Missile(coordinate(4,4)));
+    expect(GameManager.cpu.ai.getRandomShot(Missile(coordinate(1,1)))).not.toBeUndefined();
   });
 });

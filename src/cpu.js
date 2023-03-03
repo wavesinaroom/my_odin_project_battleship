@@ -12,13 +12,17 @@ const cpu = {
       this.hits.push([input]);
       return;
     }
-
     this.hits.forEach(hit=>{
-      if(!this.updateMoves(input)) 
-        if(hit.length ===1)
-          hit = this.generateMoves(hit, input);
-        else
+      if(!this.updateMoves(hit, input)){
+        if(hit.length ===1){
+          const temp = this.generateMoves(hit[0], input);
+          hit.splice(0,1)
+          hit.push(...temp) ;
+        }
+        else{
           this.hits.push([input])
+        }
+      }
     });
 
     try{
@@ -28,7 +32,7 @@ const cpu = {
     }
   },
 
-  updateMoves(input){
+  updateMoves(moves, input){
     let isUpdated = false;
     for(let i = 0; i<moves.length; ++i){
       if(input.coordinate.x === moves[i].coordinate.x && input.coordinate.y === moves[i].coordinate.y) {
@@ -42,9 +46,9 @@ const cpu = {
   getRandomCoordinate(){
     let randomSet = Math.floor(Math.random()*this.hits.length);
     let randomMove = Math.floor(Math.random()*this.hits[randomSet].length);
-    if(!this.hits[randomSet][randomMove].hit)
+    console.log(randomSet,randomMove)
+    if(!this.hits[randomSet][randomMove].hit&&this.hits[randomSet].length>1)
       return this.hits[randomSet][randomMove].coordinate;
-    throw new Error(`Coordinate has already been used`);
   },
 
   generateMoves(existing, incoming){
