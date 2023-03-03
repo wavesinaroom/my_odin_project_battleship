@@ -6,6 +6,7 @@ import {Player} from './player';
 beforeAll( ()=>{
   GameManager.setUpGame(`Pablo`);  
   GameManager.cpu.hits = [];
+  GameManager.turn = `CPU`;
 });
 
 describe(`Random values`,()=>{
@@ -117,6 +118,7 @@ describe(`Moves generation`,()=>{
     test(`Beyond right border`,()=>{
       const moves = GameManager.cpu.ai.generateMoves(Missile(coordinate(8,4)), Missile(coordinate(9,4)));
       expect(moves.length).toEqual(4);
+      GameManager.cpu.ai.hits = [];
     });
     test(`Beyond top border`,()=>{
       const moves = GameManager.cpu.ai.generateMoves(Missile(coordinate(4,0)), Missile(coordinate(4,1)));
@@ -143,8 +145,10 @@ describe(`Moves generation`,()=>{
 
 describe(`Fire Random Shot`,()=>{
   const cpu = Player();
+  GameManager.setUpGame(`Pablo`)
   test(`First positive, empty hits`,()=>{
     cpu.fireRandomShot(Missile(coordinate(4,4)));
+  console.log(cpu.ai.hits.length)
     expect(cpu.ai.hits.length).toEqual(1);
     expect(cpu.ai.hits[0][0].coordinate.x).toEqual(4);
     expect(cpu.ai.hits[0][0].coordinate.y).toEqual(4);

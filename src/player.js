@@ -22,9 +22,9 @@ function Player(name){
     player.name = `CPU`;
     player.ai  = Object.create(cpu);
     player.fireRandomShot = function(latestShot){
-      if(this.ai.hits.length){
+      if(this.ai.hits.length===0){
         this.ai.hits.push([latestShot]);
-        this.fire(coordinate(Math.floor(Math.random()*10)),Math.floor(Math.random()*10));
+        //this.fire(coordinate(Math.floor(Math.random()*10)),Math.floor(Math.random()*10));
         return;
       }
     }
