@@ -10,16 +10,19 @@ const cpu = {
   getRandomShot(input){
     if(this.hits.length===0){
       this.hits.push([latestShot]);
-      this.fire(coordinate(Math.floor(Math.random()*10)),Math.floor(Math.random()*10));
       return;
     }
 
     this.hits.forEach(hit=>{
       if(!this.updateMoves(hit)&&hit.length === 1) 
-        this.generateMoves(hit, input);
+        hit = this.generateMoves(hit, input);
     });
 
-    return this.getRandomShot();
+    try{
+      return this.getRandomCoordinate();
+    }catch{
+      return this.getRandomCoordinate();
+    }
   },
 
   updateMoves(input){
