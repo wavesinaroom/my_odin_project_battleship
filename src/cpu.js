@@ -47,7 +47,7 @@ const cpu = {
         if(!move.hit)
           possible.push(move);
       });
-      return possible[Math.floor(Math.random()*possible.length)]
+      return possible[Math.floor(Math.random()*possible.length)].coordinate;
     }
   },
 
