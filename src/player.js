@@ -27,6 +27,13 @@ function Player(name){
       }catch(e){
         this.placeRandomShip();
       }
+    },
+    player.fireRandom = function(input){
+      const randomCoordinate = this.ai.getRandomShot(input);
+      if(randomCoordinate)
+        this.fire(randomCoordinate);
+      else
+        this.fireRandom(input);
     }
   }
   player.board = GameBoard();

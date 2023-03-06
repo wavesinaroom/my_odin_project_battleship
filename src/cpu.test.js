@@ -165,6 +165,4 @@ describe(`Get Random Shot`,()=>{
     expect(updateSpy).toBeCalled();
     expect(GameManager.cpu.ai.hits.length).toBe(2);
   });
-  test(`Method ouput`,()=>{
-  });
 });

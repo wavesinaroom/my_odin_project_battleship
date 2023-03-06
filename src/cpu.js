@@ -25,11 +25,7 @@ const cpu = {
       }
     });
 
-    try{
-      return this.getRandomCoordinate();
-    }catch{
-      return this.getRandomCoordinate();
-    }
+    return this.getRandomCoordinate();
   },
 
   updateMoves(moves, input){
@@ -44,11 +40,15 @@ const cpu = {
   },
 
   getRandomCoordinate(){
+    let possible = [];
     let randomSet = Math.floor(Math.random()*this.hits.length);
-    let randomMove = Math.floor(Math.random()*this.hits[randomSet].length);
-    console.log(randomSet,randomMove)
-    if(!this.hits[randomSet][randomMove].hit&&this.hits[randomSet].length>1)
-      return this.hits[randomSet][randomMove].coordinate;
+    if(this.hits[randomSet].length>1){
+      this.hits[randomSet].forEach(move =>{
+        if(!move.hit)
+          possible.push(move);
+      });
+      return possible[Math.floor(Math.random()*possible.length)]
+    }
   },
 
   generateMoves(existing, incoming){
