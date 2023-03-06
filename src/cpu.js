@@ -1,5 +1,5 @@
 import Missile from './missile';
-import {coordinate, shipOrientation} from './gameboard'
+import {coordinate, shipOrientation} from './gameboard';
 import {shipType} from './ship';
 export {cpu};
 

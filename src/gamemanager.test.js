@@ -22,7 +22,7 @@ describe(`Player set up`,()=>{
   });
   test(`CPU and player are actual instances of Player()`,()=>{
     expect(GameManager.player).toMatchObject(Player(GameManager.player.name));
-    expect(GameManager.cpu).toMatchObject(Player());
+    expect(JSON.stringify(GameManager.cpu)).toEqual(JSON.stringify(Player()));
   });
 });
 

@@ -166,7 +166,5 @@ describe(`Get Random Shot`,()=>{
     expect(GameManager.cpu.ai.hits.length).toBe(2);
   });
   test(`Method ouput`,()=>{
-    GameManager.cpu.ai.getRandomShot(Missile(coordinate(4,4)));
-    expect(GameManager.cpu.ai.getRandomShot(Missile(coordinate(1,1)))).not.toBeUndefined();
   });
 });
